@@ -1,0 +1,107 @@
+# ======================================================================
+#  BLOG — COMMIT MESSAGE TEMPLATE
+# ======================================================================
+#
+# FORMAT
+#
+#   type(scope): concise summary
+#
+# EXAMPLES
+#
+#   feat(blog): add tag filtering
+#   fix(layout): prevent mobile overflow
+#   refactor(routes): simplify slug parsing
+#   style(post): improve prose spacing
+#
+# ----------------------------------------------------------------------
+# COMMIT TYPES
+# ----------------------------------------------------------------------
+#
+# feat       introduce a new feature
+# fix        resolve a bug or regression
+# refactor   restructure code without changing behavior
+# style      visual/UI/CSS formatting changes
+# perf       improve performance
+# docs       documentation-only changes
+# test       add or update tests
+# build      build tooling, adapters, bundling
+# ci         CI/CD workflows and automation
+# chore      maintenance, cleanup, dependencies
+# revert     revert a previous commit
+#
+# ----------------------------------------------------------------------
+# RECOMMENDED SCOPES
+# ----------------------------------------------------------------------
+#
+# blog       blog engine/content system
+# post       post rendering/prose components
+# ui         reusable UI components
+# layout     layouts/navigation/structure
+# seo        metadata/rss/sitemap/opengraph
+# mdsvex     markdown/mdsvex configuration
+# routes     SvelteKit routing/pages
+# api        server routes/endpoints
+# auth       authentication/admin access
+# stores     Svelte stores/state handling
+# theme      dark mode/themes/design tokens
+# search     search indexing/filtering
+# config     vite/svelte/tailwind configuration
+# deploy     deployment/infrastructure
+# content    writing/posts/static content
+#
+# ----------------------------------------------------------------------
+# SUMMARY GUIDELINES
+# ----------------------------------------------------------------------
+#
+# - use imperative mood
+#     ✓ add dark mode toggle
+#     ✓ improve article typography
+#     ✗ added dark mode toggle
+#
+# - keep summary short
+#     ideal: <= 72 characters
+#
+# - describe WHAT changed, not HOW
+#
+# - use lowercase unless proper nouns are required
+#
+# ----------------------------------------------------------------------
+# OPTIONAL BODY
+# ----------------------------------------------------------------------
+#
+# Explain:
+# - why the change was needed
+# - architectural decisions
+# - edge cases
+# - migration notes
+# - tradeoffs
+#
+# Example:
+#
+# fix(mdsvex): resolve hydration mismatch in code blocks
+#
+# Replaced rehype-prism with shiki because SSR output
+# differed from client-side rendering on highlighted lines.
+#
+# ----------------------------------------------------------------------
+# OPTIONAL FOOTER
+# ----------------------------------------------------------------------
+#
+# Closes #123
+# Related #98
+# BREAKING CHANGE: changed post frontmatter schema
+#
+# ----------------------------------------------------------------------
+# EXAMPLE COMMITS
+# ----------------------------------------------------------------------
+#
+# feat(blog): add related posts section
+# feat(search): implement client-side article indexing
+# fix(seo): generate canonical urls correctly
+# fix(layout): prevent horizontal scroll on mobile
+# refactor(ui): extract reusable article header
+# style(post): improve code block readability
+# perf(blog): preload adjacent article navigation
+# chore(config): upgrade sveltekit to latest version
+#
+# ======================================================================
