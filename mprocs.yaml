@@ -1,0 +1,3 @@
+procs:
+  dev_server:
+    shell: pnpm run dev
