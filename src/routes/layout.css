@@ -1,2 +1,158 @@
+@import url('https://fonts.googleapis.com/icon?family=Space+Grotesk');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+/* https://github.com/saadeghi/daisyui/issues/4505 */
+@plugin 'daisyui/index.js' {
+	logs: false;
+}
+@plugin 'daisyui/theme' {
+	name: 'dark';
+	default: false;
+	prefersdark: true;
+	color-scheme: 'dark';
+
+	/* Base surfaces */
+	--color-base-100: oklch(11% 0.003 260);
+	--color-base-200: oklch(14% 0.004 260);
+	--color-base-300: oklch(18% 0.005 260);
+	--color-base-content: oklch(92% 0.002 260);
+
+	/* Primary */
+	--color-primary: oklch(28% 0.004 260);
+	--color-primary-content: oklch(96% 0.002 260);
+
+	/* Secondary */
+	--color-secondary: oklch(34% 0.005 260);
+	--color-secondary-content: oklch(94% 0.002 260);
+
+	/* Accent */
+	--color-accent: oklch(42% 0.006 260);
+	--color-accent-content: oklch(96% 0.002 260);
+
+	/* Neutral */
+	--color-neutral: oklch(8% 0.002 260);
+	--color-neutral-content: oklch(88% 0.002 260);
+
+	/* Semantic colors (desaturated to fit monochrome aesthetic) */
+	--color-info: oklch(55% 0.02 250);
+	--color-info-content: oklch(95% 0.002 260);
+
+	--color-success: oklch(58% 0.018 160);
+	--color-success-content: oklch(95% 0.002 260);
+
+	--color-warning: oklch(68% 0.03 85);
+	--color-warning-content: oklch(12% 0.002 260);
+
+	--color-error: oklch(55% 0.04 25);
+	--color-error-content: oklch(95% 0.002 260);
+
+	/* Shape */
+	--radius-selector: 0rem;
+	--radius-field: 0rem;
+	--radius-box: 0rem;
+
+	/* Density */
+	--size-selector: 0.25rem;
+	--size-field: 0.3125rem;
+
+	/* Borders / depth */
+	--border: 1px;
+	--depth: 0;
+	--noise: 0;
+}
+
+@plugin 'daisyui/theme' {
+	name: 'light';
+	default: true;
+	prefersdark: false;
+	color-scheme: 'light';
+	--color-base-100: oklch(98% 0.003 247.858);
+	--color-base-200: oklch(96% 0.007 247.896);
+	--color-base-300: oklch(92% 0.013 255.508);
+	--color-base-content: #111111;
+	--color-primary: #111111;
+	--color-primary-content: #eef2f6;
+	--color-secondary: oklch(37% 0.044 257.287);
+	--color-secondary-content: oklch(94% 0.028 342.258);
+	--color-accent: oklch(86% 0.022 252.894);
+	--color-accent-content: oklch(38% 0.063 188.416);
+	--color-neutral: oklch(14% 0.005 285.823);
+	--color-neutral-content: oklch(92% 0.004 286.32);
+	--color-info: oklch(74% 0.16 232.661);
+	--color-info-content: oklch(29% 0.066 243.157);
+	--color-success: oklch(76% 0.177 163.223);
+	--color-success-content: oklch(37% 0.077 168.94);
+	--color-warning: oklch(82% 0.189 84.429);
+	--color-warning-content: oklch(41% 0.112 45.904);
+	--color-error: oklch(71% 0.194 13.428);
+	--color-error-content: oklch(27% 0.105 12.094);
+	--radius-selector: 0rem;
+	--radius-field: 0rem;
+	--radius-box: 0rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.3125rem;
+	--border: 1.5px;
+	--depth: 1;
+	--noise: 0;
+}
+
+@layer base {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: 'Space Grotesk', sans;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.0825em;
+	}
+	body {
+		@apply bg-base-100;
+		font-family: 'Fira Sans', sans;
+	}
+}
+
+@layer components {
+	.hvr-lines-square {
+		display: inline-block;
+		position: relative;
+		overflow: hidden;
+		padding: 4px 0;
+	}
+
+	.hvr-lines-square::after {
+		content: '';
+		position: absolute;
+		left: 51%;
+		right: 51%;
+		height: 5px;
+		background-image: repeating-linear-gradient(
+			to right,
+			var(--color-base-content) 0 5px,
+			transparent 5px 10px
+		);
+		transition:
+			left 0.3s ease-out,
+			right 0.3s ease-out;
+	}
+
+	/* top line */
+	.hvr-lines-square::before {
+		top: 0;
+	}
+
+	/* bottom line */
+	.hvr-lines-square::after {
+		bottom: 0;
+	}
+
+	.hvr-lines-square:hover::before,
+	.hvr-lines-square:hover::after {
+		left: 0;
+		right: 0;
+	}
+}
