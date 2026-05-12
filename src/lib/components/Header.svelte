@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let theme = $state('light');
+	let theme = $state('bc-light');
 
 	function applyTheme(newTheme) {
 		theme = newTheme;
@@ -29,7 +29,7 @@
 		if (savedTheme) {
 			theme = savedTheme;
 		} else {
-			theme = prefersDark ? 'dark' : 'light';
+			theme = prefersDark ? 'bc-dark' : 'bc-light';
 		}
 
 		document.documentElement.setAttribute('data-theme', theme);
@@ -86,7 +86,7 @@
 									d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"
 								/>
 							</svg>
-							<input type="checkbox" value="light" class="theme-controller toggle" />
+							<input type="checkbox" value="bc-light" class="theme-controller toggle" />
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"
@@ -139,8 +139,8 @@
 						<input
 							type="checkbox"
 							class="toggle"
-							checked={theme === 'dark'}
-							onchange={(e) => applyTheme(e.currentTarget.checked ? 'dark' : 'light')}
+							checked={theme === 'bc-dark'}
+							onchange={(e) => applyTheme(e.currentTarget.checked ? 'bc-dark' : 'bc-light')}
 						/>
 
 						<!-- moon -->

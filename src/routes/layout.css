@@ -8,7 +8,42 @@
 	logs: false;
 }
 @plugin 'daisyui/theme' {
-	name: 'dark';
+	name: 'bc-light';
+	default: true;
+	prefersdark: false;
+	color-scheme: 'light';
+	--color-base-100: oklch(98% 0.003 247.858);
+	--color-base-200: oklch(96% 0.007 247.896);
+	--color-base-300: oklch(92% 0.013 255.508);
+	--color-base-content: #111111;
+	--color-primary: #111111;
+	--color-primary-content: #eef2f6;
+	--color-secondary: oklch(37% 0.044 257.287);
+	--color-secondary-content: oklch(94% 0.028 342.258);
+	--color-accent: oklch(86% 0.022 252.894);
+	--color-accent-content: oklch(38% 0.063 188.416);
+	--color-neutral: oklch(14% 0.005 285.823);
+	--color-neutral-content: oklch(92% 0.004 286.32);
+	--color-info: oklch(74% 0.16 232.661);
+	--color-info-content: oklch(29% 0.066 243.157);
+	--color-success: oklch(76% 0.177 163.223);
+	--color-success-content: oklch(37% 0.077 168.94);
+	--color-warning: oklch(82% 0.189 84.429);
+	--color-warning-content: oklch(41% 0.112 45.904);
+	--color-error: oklch(71% 0.194 13.428);
+	--color-error-content: oklch(27% 0.105 12.094);
+	--radius-selector: 0rem;
+	--radius-field: 0rem;
+	--radius-box: 0rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.3125rem;
+	--border: 1.5px;
+	--depth: 1;
+	--noise: 0;
+}
+
+@plugin 'daisyui/theme' {
+	name: 'bc-dark';
 	default: false;
 	prefersdark: true;
 	color-scheme: 'dark';
@@ -63,41 +98,6 @@
 	--noise: 0;
 }
 
-@plugin 'daisyui/theme' {
-	name: 'light';
-	default: true;
-	prefersdark: false;
-	color-scheme: 'light';
-	--color-base-100: oklch(98% 0.003 247.858);
-	--color-base-200: oklch(96% 0.007 247.896);
-	--color-base-300: oklch(92% 0.013 255.508);
-	--color-base-content: #111111;
-	--color-primary: #111111;
-	--color-primary-content: #eef2f6;
-	--color-secondary: oklch(37% 0.044 257.287);
-	--color-secondary-content: oklch(94% 0.028 342.258);
-	--color-accent: oklch(86% 0.022 252.894);
-	--color-accent-content: oklch(38% 0.063 188.416);
-	--color-neutral: oklch(14% 0.005 285.823);
-	--color-neutral-content: oklch(92% 0.004 286.32);
-	--color-info: oklch(74% 0.16 232.661);
-	--color-info-content: oklch(29% 0.066 243.157);
-	--color-success: oklch(76% 0.177 163.223);
-	--color-success-content: oklch(37% 0.077 168.94);
-	--color-warning: oklch(82% 0.189 84.429);
-	--color-warning-content: oklch(41% 0.112 45.904);
-	--color-error: oklch(71% 0.194 13.428);
-	--color-error-content: oklch(27% 0.105 12.094);
-	--radius-selector: 0rem;
-	--radius-field: 0rem;
-	--radius-box: 0rem;
-	--size-selector: 0.25rem;
-	--size-field: 0.3125rem;
-	--border: 1.5px;
-	--depth: 1;
-	--noise: 0;
-}
-
 @layer base {
 	h1,
 	h2,
@@ -105,14 +105,14 @@
 	h4,
 	h5,
 	h6 {
-		font-family: 'Space Grotesk', sans;
+		font-family: 'Space Grotesk', sans-serif;
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.0825em;
 	}
 	body {
 		@apply bg-base-100;
-		font-family: 'Fira Sans', sans;
+		font-family: 'Fira Sans', sans-serif;
 	}
 }
 
@@ -139,18 +139,10 @@
 			left 0.3s ease-out,
 			right 0.3s ease-out;
 	}
-
-	/* top line */
-	.hvr-lines-square::before {
-		top: 0;
-	}
-
-	/* bottom line */
 	.hvr-lines-square::after {
 		bottom: 0;
 	}
 
-	.hvr-lines-square:hover::before,
 	.hvr-lines-square:hover::after {
 		left: 0;
 		right: 0;
