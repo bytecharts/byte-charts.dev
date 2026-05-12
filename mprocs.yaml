@@ -1,3 +1,5 @@
 procs:
   dev_server:
     shell: pnpm run dev
+  preview:
+    shell: pnpm run build && pnpm run preview
