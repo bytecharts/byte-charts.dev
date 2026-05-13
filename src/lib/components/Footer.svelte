@@ -1,4 +1,4 @@
-<footer class="footer-center footer footer-horizontal rounded bg-base-100 p-10 text-base-content">
+<footer class="footer-center footer footer-horizontal rounded bg-base-100 p-4 text-base-content">
 	<nav>
 		<div class="grid grid-flow-col gap-4">
 			<!--Linkedin-->
@@ -93,6 +93,12 @@
 					/></svg
 				>
 			</a>
+		</div>
+		<div class="grid grid-flow-col gap-4 p-4">
+			<p class="copy-text text-md">
+				<span class="align-middle">&copy;</span>
+				2026 Byte Charts. All rights reserved.
+			</p>
 		</div>
 	</nav>
 </footer>

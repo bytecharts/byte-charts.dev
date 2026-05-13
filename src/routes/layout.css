@@ -147,4 +147,12 @@
 		left: 0;
 		right: 0;
 	}
+	.copy-text {
+		@apply bg-base-100;
+		font-family: 'Fira Sans', sans-serif;
+	}
+	.copy-text span {
+		vertical-align: middle;
+		font-family: sans-serif;
+	}
 }
