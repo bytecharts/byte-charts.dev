@@ -1,6 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 	import { darkTheme } from '$lib/stores/theme.js';
+
+	let isDark = false;
+
 	onMount(() => {
 		// ============================================
 		// CONFIG
@@ -27,9 +30,6 @@
 		// THEMES
 		// ============================================
 
-		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-		let darkTheme = prefersDark;
 		const themes = {
 			dark: {
 				bg: '#000',
@@ -51,7 +51,7 @@
 		};
 
 		function theme() {
-			return darkTheme ? themes.dark : themes.light;
+			return isDark ? themes.dark : themes.light;
 		}
 
 		// ============================================
@@ -397,7 +397,16 @@
 
 		render();
 
-		setInterval(render, 2000);
+		const interval = setInterval(render, 2000);
+		const unsubscribe = darkTheme.subscribe((value) => {
+			isDark = value;
+			render();
+		});
+
+		return () => {
+			clearInterval(interval);
+			unsubscribe();
+		};
 	});
 </script>
 

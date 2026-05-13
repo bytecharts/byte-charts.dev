@@ -5,6 +5,7 @@
 
 	function applyTheme(newTheme) {
 		theme = newTheme;
+		darkTheme.set(theme === 'bc-dark');
 
 		document.documentElement.setAttribute('data-theme', theme);
 
@@ -26,13 +27,7 @@
 		const savedTheme = localStorage.getItem('theme');
 		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-		if (savedTheme) {
-			theme = savedTheme;
-		} else {
-			theme = prefersDark ? 'bc-dark' : 'bc-light';
-		}
-
-		document.documentElement.setAttribute('data-theme', theme);
+		applyTheme(savedTheme ?? (prefersDark ? 'bc-dark' : 'bc-light'));
 
 		return () => {
 			document.removeEventListener('click', closeDetails);
