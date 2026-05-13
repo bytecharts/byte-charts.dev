@@ -60,6 +60,7 @@
 					tabindex="0"
 					class="dropdown-content menu z-[1] mt-3 w-52 menu-sm rounded-box bg-white p-2 shadow"
 				>
+					<li><a class="brand-link" href="/gallery">Gallery</a></li>
 					<li><a class="brand-link" href="/blog">Blog</a></li>
 					<li><a class="brand-link" href="/about">About</a></li>
 					<!--Theme Toggler-->
@@ -107,6 +108,7 @@
 		<!--Left Side-->
 		<div class="navbar-end hidden lg:flex">
 			<ul class="menu menu-horizontal relative z-10 px-1">
+				<li><a class="brand-link hvr-lines-square" href="/gallery"> Gallery </a></li>
 				<li><a class="brand-link hvr-lines-square" href="/blog"> Blog </a></li>
 				<li><a class="brand-link hvr-lines-square" href="/about">About</a></li>
 

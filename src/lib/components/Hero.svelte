@@ -68,6 +68,38 @@
 			return isDark ? themes.dark : themes.light;
 		}
 
+		function hexToRgb(hex) {
+			const value = hex.replace('#', '');
+			const full =
+				value.length === 3
+					? value
+							.split('')
+							.map((c) => c + c)
+							.join('')
+					: value;
+			const int = Number.parseInt(full, 16);
+			return {
+				r: (int >> 16) & 255,
+				g: (int >> 8) & 255,
+				b: int & 255
+			};
+		}
+
+		const chartPalette = ['#F07178', '#6C5CE7', '#FFB454'];
+
+		let activeColor = chartPalette[0];
+		let activeColorRgb = hexToRgb(activeColor);
+
+		function setActiveColor(color) {
+			activeColor = color;
+			activeColorRgb = hexToRgb(color);
+		}
+
+		function colorWithAlpha(shade = 255) {
+			const alpha = Math.max(0, Math.min(1, shade / 255));
+			return `rgba(${activeColorRgb.r}, ${activeColorRgb.g}, ${activeColorRgb.b}, ${alpha})`;
+		}
+
 		// ============================================
 		// GRID
 		// ============================================
@@ -95,7 +127,7 @@
 		function drawCell(col, row, shade = 255) {
 			if (col < PAD || col >= cols - PAD || row < PAD || row >= rows - PAD) return;
 
-			ctx.fillStyle = theme().shades(shade);
+			ctx.fillStyle = colorWithAlpha(shade);
 
 			ctx.fillRect(col * cellSize + 1, row * cellSize + 1, cellSize - 2, cellSize - 2);
 		}
@@ -136,6 +168,42 @@
 		// ============================================
 		// CHARTS
 		// ============================================
+
+		function circularBarplot() {
+			const cx = Math.floor(cols / 2);
+
+			const cy = Math.floor(rows / 2);
+
+			const bars = 64;
+
+			const innerRadius = 36;
+
+			for (let i = 0; i < bars; i++) {
+				const angle = ((Math.PI * 2) / bars) * i;
+
+				const length = rand(10, 60);
+
+				const shade = 80 + Math.floor((length / 28) * 175);
+
+				for (let r = innerRadius; r < innerRadius + length; r++) {
+					const x = Math.floor(cx + Math.cos(angle) * r);
+
+					const y = Math.floor(cy + Math.sin(angle) * r);
+
+					drawCell(x, y, shade);
+
+					// thicken bars
+					const x2 = Math.floor(cx + Math.cos(angle + 0.01) * r);
+
+					const y2 = Math.floor(cy + Math.sin(angle + 0.01) * r);
+
+					drawCell(x2, y2, shade);
+				}
+			}
+
+			// center circle
+			drawCircle(cx, cy, innerRadius - 2, 220);
+		}
 
 		function treemap() {
 			recursiveTreemap(4, 4, cols - 8, rows - 8, 0);
@@ -338,6 +406,10 @@
 
 		const charts = [
 			{
+				name: 'Circular Barplot',
+				fn: circularBarplot
+			},
+			{
 				name: 'TREEMAP',
 				fn: treemap
 			},
@@ -385,11 +457,6 @@
 			{
 				name: 'BUBBLE',
 				fn: bubbleChart
-			},
-
-			{
-				name: 'DENDROGRAM',
-				fn: dendrogram
 			}
 		];
 
@@ -405,6 +472,7 @@
 			drawGrid();
 
 			const chart = charts[current];
+			setActiveColor(chartPalette[current % chartPalette.length]);
 
 			chart.fn();
 
