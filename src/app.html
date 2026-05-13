@@ -7,6 +7,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<meta name="text-scale" content="scale" />
+		<script>
+			const theme = localStorage.getItem('theme');
+
+			if (theme) {
+				document.documentElement.setAttribute('data-theme', theme);
+			} else {
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+				document.documentElement.setAttribute('data-theme', prefersDark ? 'bc-dark' : 'bc-light');
+			}
+		</script>
 		%sveltekit.head%
 	</head>
 
@@ -14,15 +25,3 @@
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
-
-<script>
-	const theme = localStorage.getItem('theme');
-
-	if (theme) {
-		document.documentElement.setAttribute('data-theme', theme);
-	} else {
-		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-		document.documentElement.setAttribute('data-theme', prefersDark ? 'bc-dark' : 'bc-light');
-	}
-</script>
