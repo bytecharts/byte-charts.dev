@@ -3,28 +3,42 @@
 	import { darkTheme } from '$lib/stores/theme.js';
 
 	let isDark = false;
+	let canvas;
+	let container;
+	let ctx;
+	let width = 0;
+	let height = 0;
+	let cols = 0;
+	let rows = 0;
 
 	onMount(() => {
 		// ============================================
 		// CONFIG
 		// ============================================
 
-		const canvas = document.getElementById('gridCanvas');
-
-		const ctx = canvas.getContext('2d');
-
-		const label = document.getElementById('label');
-
-		const width = canvas.width;
-		const height = canvas.height;
-
 		const cellSize = 5;
-
-		const cols = width / cellSize;
-
-		const rows = height / cellSize;
-
 		const PAD = 2;
+
+		if (!canvas || !container) return;
+
+		ctx = canvas.getContext('2d');
+
+		function setSize() {
+			if (!canvas || !container) return;
+
+			const rect = container.getBoundingClientRect();
+			const nextWidth = Math.max(1, Math.floor(rect.width));
+			const nextHeight = Math.max(1, Math.floor(rect.height));
+
+			if (nextWidth === width && nextHeight === height) return;
+
+			width = nextWidth;
+			height = nextHeight;
+			canvas.width = width;
+			canvas.height = height;
+			cols = Math.floor(width / cellSize);
+			rows = Math.floor(height / cellSize);
+		}
 
 		// ============================================
 		// THEMES
@@ -386,6 +400,8 @@
 		let current = 0;
 
 		function render() {
+			if (!ctx || cols === 0 || rows === 0) return;
+
 			drawGrid();
 
 			const chart = charts[current];
@@ -395,9 +411,15 @@
 			current = (current + 1) % charts.length;
 		}
 
+		setSize();
 		render();
 
 		const interval = setInterval(render, 2000);
+		const resizeObserver = new ResizeObserver(() => {
+			setSize();
+			render();
+		});
+		resizeObserver.observe(container);
 		const unsubscribe = darkTheme.subscribe((value) => {
 			isDark = value;
 			render();
@@ -405,15 +427,27 @@
 
 		return () => {
 			clearInterval(interval);
+			resizeObserver.disconnect();
 			unsubscribe();
 		};
 	});
 </script>
 
-<canvas id="gridCanvas" height="900" width="1600"> </canvas>
+<div class="hero-canvas" bind:this={container}>
+	<canvas bind:this={canvas}></canvas>
+</div>
 
 <style>
+	.hero-canvas {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
 	canvas {
 		display: block;
+		width: 100%;
+		height: 100%;
 	}
 </style>
