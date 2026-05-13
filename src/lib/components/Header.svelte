@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-
+	import { darkTheme } from '$lib/stores/theme.js';
 	let theme = $state('bc-light');
 
 	function applyTheme(newTheme) {
