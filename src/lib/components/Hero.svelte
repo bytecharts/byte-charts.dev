@@ -459,6 +459,378 @@
 				fn: bubbleChart
 			}
 		];
+		// ============================================
+		// TRIANGLE GRID
+		// ============================================
+
+		function triangleGrid() {
+			const size = 6;
+
+			for (let y = 0; y < rows; y += size) {
+				for (let x = 0; x < cols; x += size) {
+					const flip = (Math.floor(x / size) + Math.floor(y / size)) % 2;
+
+					drawTriangle(x, y, size, flip, 220);
+				}
+			}
+		}
+
+		// ============================================
+		// TRIANGLE WAVES
+		// ============================================
+
+		function triangleWaves() {
+			const size = 8;
+
+			for (let y = 0; y < rows; y += size) {
+				for (let x = 0; x < cols; x += size) {
+					const v = Math.sin(x * 0.08 + y * 0.04);
+
+					const shade = Math.floor(((v + 1) / 2) * 255);
+
+					drawTriangle(x, y, size, v > 0, shade);
+				}
+			}
+		}
+
+		// ============================================
+		// TRIANGLE SPIRAL
+		// ============================================
+
+		function triangleSpiral() {
+			const cx = cols / 2;
+
+			const cy = rows / 2;
+
+			const size = 6;
+
+			for (let y = 0; y < rows; y += size) {
+				for (let x = 0; x < cols; x += size) {
+					const angle = Math.atan2(y - cy, x - cx);
+
+					const d = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+
+					const v = Math.sin(d * 0.2 + angle * 4);
+
+					drawTriangle(x, y, size, v > 0, 200);
+				}
+			}
+		}
+
+		// ============================================
+		// TRIANGLE TERRAIN
+		// ============================================
+
+		function triangleTerrain() {
+			const size = 6;
+
+			for (let y = 0; y < rows; y += size) {
+				for (let x = 0; x < cols; x += size) {
+					const v = Math.sin(x * 0.06) + Math.cos(y * 0.06);
+
+					const shade = Math.floor(((v + 2) / 4) * 255);
+
+					drawTriangle(x, y, size, v > 0, shade);
+				}
+			}
+		}
+
+		// ============================================
+		// TRIANGLE MOSAIC
+		// ============================================
+
+		function triangleMosaic() {
+			const size = 5;
+
+			for (let y = 0; y < rows; y += size) {
+				for (let x = 0; x < cols; x += size) {
+					drawTriangle(x, y, size, Math.random() > 0.5, rand(80, 255));
+				}
+			}
+		}
+
+		// ============================================
+		// TRIANGLE OPTICAL
+		// ============================================
+
+		function triangleOptical() {
+			const cx = cols / 2;
+
+			const cy = rows / 2;
+
+			const size = 6;
+
+			for (let y = 0; y < rows; y += size) {
+				for (let x = 0; x < cols; x += size) {
+					const d = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+
+					const flip = Math.floor(d / 4) % 2;
+
+					drawTriangle(x, y, size, flip, 255);
+				}
+			}
+		}
+
+		// ============================================
+		// TRIANGLE HELPER
+		// ============================================
+
+		function drawTriangle(x, y, size, flip, shade = 255) {
+			for (let yy = 0; yy < size; yy++) {
+				const width = Math.floor((yy / size) * size);
+
+				for (let xx = 0; xx <= width; xx++) {
+					if (flip) {
+						drawCell(x + xx, y + yy, shade);
+					} else {
+						drawCell(x + size - xx, y + yy, shade);
+					}
+				}
+			}
+		}
+
+		// ============================================
+		// REGISTER
+		// ============================================
+
+		charts.push({
+			name: 'TRI GRID',
+
+			fn: triangleGrid
+		});
+
+		charts.push({
+			name: 'TRI WAVES',
+
+			fn: triangleWaves
+		});
+
+		charts.push({
+			name: 'TRI SPIRAL',
+
+			fn: triangleSpiral
+		});
+
+		charts.push({
+			name: 'TRI TERRAIN',
+
+			fn: triangleTerrain
+		});
+
+		charts.push({
+			name: 'TRI MOSAIC',
+
+			fn: triangleMosaic
+		});
+
+		charts.push({
+			name: 'TRI OPTICAL',
+
+			fn: triangleOptical
+		});
+		// ============================================
+		// ZEBRA STRIPES
+		// ============================================
+
+		function zebraPattern() {
+			for (let y = 0; y < rows; y++) {
+				for (let x = 0; x < cols; x++) {
+					const wave = Math.sin(x * 0.12 + y * 0.04);
+
+					if (wave > 0) {
+						drawCell(x, y, 255);
+					}
+				}
+			}
+		}
+
+		// ============================================
+		// TOPOGRAPHIC WAVES
+		// ============================================
+
+		function topoPattern() {
+			for (let y = 0; y < rows; y++) {
+				for (let x = 0; x < cols; x++) {
+					const v = Math.sin(x * 0.08) + Math.cos(y * 0.08) + Math.sin((x + y) * 0.03);
+
+					const band = Math.floor(v * 4);
+
+					if (band % 2 === 0) {
+						drawCell(x, y, 180);
+					}
+				}
+			}
+		}
+
+		// ============================================
+		// MOIRÉ INTERFERENCE
+		// ============================================
+
+		function moirePattern() {
+			const cx = cols / 2;
+
+			const cy = rows / 2;
+
+			for (let y = 0; y < rows; y++) {
+				for (let x = 0; x < cols; x++) {
+					const d1 = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+
+					const d2 = Math.sqrt((x - cx * 0.7) ** 2 + (y - cy * 1.2) ** 2);
+
+					const v = Math.sin(d1 * 0.6) + Math.sin(d2 * 0.6);
+
+					if (v > 0) {
+						drawCell(x, y, 220);
+					}
+				}
+			}
+		}
+
+		// ============================================
+		// CHECKER DISTORTION
+		// ============================================
+
+		function warpedChecker() {
+			for (let y = 0; y < rows; y++) {
+				for (let x = 0; x < cols; x++) {
+					const xx = x + Math.sin(y * 0.08) * 6;
+
+					const yy = y + Math.cos(x * 0.08) * 6;
+
+					const v = (Math.floor(xx / 6) + Math.floor(yy / 6)) % 2;
+
+					if (v === 0) {
+						drawCell(x, y, 255);
+					}
+				}
+			}
+		}
+
+		// ============================================
+		// FLOW FIELD
+		// ============================================
+
+		function flowField() {
+			for (let y = 0; y < rows; y++) {
+				for (let x = 0; x < cols; x++) {
+					const angle = Math.sin(x * 0.03) * Math.cos(y * 0.03) * Math.PI * 4;
+
+					const v = Math.sin(angle * 4);
+
+					if (v > 0.2) {
+						drawCell(x, y, 200);
+					}
+				}
+			}
+		}
+
+		// ============================================
+		// CONCENTRIC WAVES
+		// ============================================
+
+		function concentricPattern() {
+			const cx = cols / 2;
+
+			const cy = rows / 2;
+
+			for (let y = 0; y < rows; y++) {
+				for (let x = 0; x < cols; x++) {
+					const d = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+
+					const v = Math.sin(d * 0.8);
+
+					if (v > 0) {
+						drawCell(x, y, 255);
+					}
+				}
+			}
+		}
+
+		// ============================================
+		// DIAGONAL WEAVE
+		// ============================================
+
+		function weavePattern() {
+			for (let y = 0; y < rows; y++) {
+				for (let x = 0; x < cols; x++) {
+					const a = Math.sin((x + y) * 0.08);
+
+					const b = Math.cos((x - y) * 0.08);
+
+					if (a * b > 0) {
+						drawCell(x, y, 220);
+					}
+				}
+			}
+		}
+
+		// ============================================
+		// NOISE CLOUD
+		// ============================================
+
+		function noiseCloud() {
+			for (let y = 0; y < rows; y++) {
+				for (let x = 0; x < cols; x++) {
+					const v = Math.sin(x * 0.05) * Math.cos(y * 0.05) + Math.sin((x + y) * 0.02);
+
+					const shade = Math.floor(((v + 1) / 2) * 255);
+
+					drawCell(x, y, shade);
+				}
+			}
+		}
+
+		// ============================================
+		// REGISTER
+		// ============================================
+
+		charts.push({
+			name: 'ZEBRA',
+
+			fn: zebraPattern
+		});
+
+		charts.push({
+			name: 'TOPO',
+
+			fn: topoPattern
+		});
+
+		charts.push({
+			name: 'MOIRE',
+
+			fn: moirePattern
+		});
+
+		charts.push({
+			name: 'CHECKER',
+
+			fn: warpedChecker
+		});
+
+		charts.push({
+			name: 'FLOW FIELD',
+
+			fn: flowField
+		});
+
+		charts.push({
+			name: 'CONCENTRIC',
+
+			fn: concentricPattern
+		});
+
+		charts.push({
+			name: 'WEAVE',
+
+			fn: weavePattern
+		});
+
+		charts.push({
+			name: 'NOISE',
+
+			fn: noiseCloud
+		});
 
 		// ============================================
 		// ANIMATION
