@@ -52,7 +52,7 @@
 	let galleryEl;
 	let galleryInstance;
 
-	onMount(() => {
+	onMount(async () => {
 		const lgZoom = (await import('lightgallery/plugins/zoom')).default;
 		const lgFullscreen = (await import('lightgallery/plugins/fullscreen')).default;
 		const lgVideo = (await import('lightgallery/plugins/video')).default;
