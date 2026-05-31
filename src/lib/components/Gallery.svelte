@@ -1,9 +1,6 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
 	import lightGallery from 'lightgallery';
-	import lgZoom from 'lightgallery/plugins/zoom';
-	import lgFullscreen from 'lightgallery/plugins/fullscreen';
-	import lgVideo from 'lightgallery/plugins/video';
 	import 'lightgallery/css/lightgallery.css';
 	import 'lightgallery/css/lg-zoom.css';
 	import 'lightgallery/css/lg-fullscreen.css';
@@ -56,6 +53,10 @@
 	let galleryInstance;
 
 	onMount(() => {
+		const lgZoom = (await import('lightgallery/plugins/zoom')).default;
+		const lgFullscreen = (await import('lightgallery/plugins/fullscreen')).default;
+		const lgVideo = (await import('lightgallery/plugins/video')).default;
+
 		if (!galleryEl) return;
 		galleryInstance = lightGallery(galleryEl, {
 			plugins: [lgZoom, lgFullscreen, lgVideo],
@@ -72,7 +73,9 @@
 
 <section class="px-6 py-16">
 	<div class="mx-auto max-w-6xl">
-		<div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+		<div
+			class="relative z-50 mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
+		>
 			<div>
 				<h1 class="text-4xl font-black tracking-tight sm:text-5xl">Gallery</h1>
 				<p class="mt-3 max-w-2xl text-base-content/70">
@@ -84,9 +87,7 @@
 
 		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" bind:this={galleryEl}>
 			{#each galleryItems as item}
-				<figure
-					class="gallery-card overflow-hidden border border-base-300 bg-base-100/80 shadow-sm"
-				>
+				<figure class="gallery-card z-50 overflow-hidden border border-base-300 bg-base-100/80">
 					<div class="aspect-[4/3] overflow-hidden bg-base-200">
 						{#if item.isVideo}
 							<a
