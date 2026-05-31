@@ -5,6 +5,7 @@
 	import './layout.css';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import BGPattern from '$lib/components/BGPattern.svelte';
 
 	let { children } = $props();
 </script>
@@ -21,6 +22,7 @@
 	/>
 </svelte:head>
 
+<BGPattern class="fixed inset-0 z-0" />
 <div class="mx-auto max-w-[100rem]">
 	<Header />
 	{@render children()}

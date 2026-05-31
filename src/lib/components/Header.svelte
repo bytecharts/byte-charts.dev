@@ -35,10 +35,11 @@
 	});
 </script>
 
-<div class="navbar-container sticky top-0 z-30">
+<div class="navbar-container sticky top-0 z-100">
 	<!--Right Side -->
-	<div class="navbar bg-base-100 shadow-sm backdrop-blur-md">
+	<div class=" navbar bg-base-100">
 		<div class="navbar-start">
+			<!--Mobile Menu-->
 			<div class="dropdown">
 				<div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
 					<svg
@@ -56,17 +57,22 @@
 						/>
 					</svg>
 				</div>
+
 				<ul
 					tabindex="0"
 					class="dropdown-content menu z-[1] mt-3 w-52 menu-sm rounded-box bg-white p-2 shadow"
 				>
-					<li><a class="brand-link" href="/">Home</a></li>
-					<li><a class="brand-link" href="/gallery">Gallery</a></li>
-					<li><a class="brand-link" href="/blog">Blog</a></li>
-					<li><a class="brand-link" href="/about">About</a></li>
+					<li><a class="brand-link hvr-lines-square tracking-normal" href="/">Home</a></li>
+					<li>
+						<a class="brand-link hvr-lines-square tracking-normal" href="/gallery">Gallery</a>
+					</li>
+					<li><a class="brand-link hvr-lines-square tracking-normal" href="/blog">Blog</a></li>
+					<li><a class="brand-link hvr-lines-square tracking-normal" href="/about">About</a></li>
+
 					<!--Theme Toggler-->
 					<li class="m-auto">
 						<label class="flex cursor-pointer gap-2">
+							<!-- sun -->
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"
@@ -84,6 +90,8 @@
 								/>
 							</svg>
 							<input type="checkbox" value="bc-light" class="theme-controller toggle" />
+
+							<!-- moon -->
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"
@@ -109,10 +117,12 @@
 		<!--Left Side-->
 		<div class="navbar-end hidden lg:flex">
 			<ul class="menu menu-horizontal relative z-10 px-1">
-				<li><a class="brand-link hvr-lines-square" href="/"> Home </a></li>
-				<li><a class="brand-link hvr-lines-square" href="/gallery"> Gallery </a></li>
-				<li><a class="brand-link hvr-lines-square" href="/blog"> Blog </a></li>
-				<li><a class="brand-link hvr-lines-square" href="/about">About</a></li>
+				<li><a class="brand-link hvr-lines-square tracking-normal" href="/"> Home </a></li>
+				<li>
+					<a class="brand-link hvr-lines-square tracking-normal" href="/gallery"> Gallery </a>
+				</li>
+				<li><a class="brand-link hvr-lines-square tracking-normal" href="/blog"> Blog </a></li>
+				<li><a class="brand-link hvr-lines-square tracking-normal" href="/about">About</a></li>
 
 				<!-- Theme Toggler -->
 				<li class="m-auto">
@@ -168,7 +178,6 @@
 		font-family: 'Space Grotesk', sans;
 		font-size: 1.575rem;
 		font-weight: 700;
-		letter-spacing: 0.0825em;
 	}
 	.brand-logo {
 		height: 64px;
