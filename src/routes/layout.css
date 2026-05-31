@@ -107,7 +107,6 @@
 	h6 {
 		font-family: 'Space Grotesk', sans-serif;
 		font-weight: 700;
-		text-transform: uppercase;
 		letter-spacing: 0.0825em;
 	}
 	body {
@@ -147,6 +146,7 @@
 		left: 0;
 		right: 0;
 	}
+
 	.copy-text {
 		@apply bg-base-100;
 		font-family: 'Fira Sans', sans-serif;
@@ -154,5 +154,11 @@
 	.copy-text span {
 		vertical-align: middle;
 		font-family: sans-serif;
+	}
+}
+
+@layer utilities {
+	.theme-shadow {
+		@apply shadow-black/5 dark:shadow-black/40;
 	}
 }

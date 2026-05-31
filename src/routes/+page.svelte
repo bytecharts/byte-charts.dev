@@ -5,9 +5,9 @@
 <main>
 	<div class="hero min-h-screen bg-base-100">
 		<Hero />
-		<div class="hero-content mb-50 bg-base-100 p-10 text-center shadow-sm">
+		<div class=" hero-content mb-50 bg-base-100 p-10 text-center">
 			<div class="max-w-md">
-				<h1 class="text-3xl font-black md:text-5xl">Byte Charts</h1>
+				<h1 class="text-4xl font-black tracking-wide uppercase md:text-5xl">Byte Charts</h1>
 				<p class="py-6">
 					Exploring <a href="/gallery" class="link">data visualization</a>, generative art.
 				</p>
