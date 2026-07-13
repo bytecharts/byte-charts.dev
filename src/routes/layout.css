@@ -116,6 +116,9 @@
 }
 
 @layer components {
+	.card-custom {
+		@apply z-50 border border-base-300 bg-base-100/80 p-5;
+	}
 	.hvr-lines-square {
 		display: inline-block;
 		position: relative;
@@ -160,5 +163,13 @@
 @layer utilities {
 	.theme-shadow {
 		@apply shadow-black/5 dark:shadow-black/40;
+	}
+	.header-font {
+		font-family: 'Space Grotesk', sans-serif;
+		font-weight: 700;
+		letter-spacing: 0.0825em;
+	}
+	.about-page-hack {
+		content-visibility: auto;
 	}
 }

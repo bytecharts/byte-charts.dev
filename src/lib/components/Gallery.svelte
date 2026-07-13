@@ -74,9 +74,9 @@
 <section class="px-6 py-16">
 	<div class="mx-auto max-w-6xl">
 		<div
-			class="relative z-50 mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
+			class=" card-custom relative mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
 		>
-			<div>
+			<div class="">
 				<h1 class="text-4xl font-black tracking-tight sm:text-5xl">Gallery</h1>
 				<p class="mt-3 max-w-2xl text-base-content/70">
 					A curated set from the 30 Day 2026 charts challenge.

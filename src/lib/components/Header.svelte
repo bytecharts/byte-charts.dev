@@ -112,6 +112,11 @@
 			<a href="/" class="brand-logo btn-ghost">
 				<img src="/images/byte-charts.svg" alt="Byte Charts Logo" class="logo-img" />
 			</a>
+
+			<span
+				class="header-font text-1xl font-black tracking-wide uppercase
+				md:text-3xl">Byte Charts</span
+			>
 		</div>
 
 		<!--Left Side-->

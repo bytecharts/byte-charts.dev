@@ -29,10 +29,10 @@
 <main class="min-h-screen bg-base-100">
 	<section class="px-6 py-16">
 		<div class="relative mx-auto max-w-6xl">
-			<header class="z-50 mb-12">
+			<header class="card-custom z-50 mb-12">
 				<h1 class="text-4xl font-black tracking-tight sm:text-5xl">Blog</h1>
 				<p class="mt-3 max-w-2xl text-base-content/70">
-					Notes on data, sketches, and generative forms.
+					Musings on data, sketches, and generative art.
 				</p>
 			</header>
 

@@ -7,9 +7,15 @@
 		<Hero />
 		<div class=" hero-content mb-50 bg-base-100 p-10 text-center">
 			<div class="max-w-md">
-				<h1 class="text-4xl font-black tracking-wide uppercase md:text-5xl">Byte Charts</h1>
+				<!--<img src="/images/byte-charts.svg" alt="Byte Charts Logo" class="w-[3em]" />-->
+				<!--<h1 class="text-4xl font-black tracking-wide uppercase md:text-5xl">Byte Charts</h1>-->
+
+				<div class="flex items-center gap-3 text-4xl md:text-5xl">
+					<img src="/images/byte-charts.svg" alt="Byte Charts Logo" class="h-[1.5em] w-auto" />
+					<h1 class="font-black tracking-wide uppercase">Byte Charts</h1>
+				</div>
 				<p class="py-6">
-					Exploring <a href="/gallery" class="link">data visualization</a>, generative art.
+					<a href="/gallery" class="link">Data visualization</a> | Story Telling | Generative Art
 				</p>
 			</div>
 		</div>
