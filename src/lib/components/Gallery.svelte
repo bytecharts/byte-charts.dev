@@ -6,7 +6,7 @@
 	import 'lightgallery/css/lg-fullscreen.css';
 	import 'lightgallery/css/lg-video.css';
 
-	const basePath = '/images/charts/30Day2026';
+	const basePath = '/images/charts/gallery/static/';
 	const toTitle = (file) =>
 		file
 			.replace(/\.(png|webp)$/i, '')
@@ -14,24 +14,27 @@
 			.replace(/\b\w/g, (char) => char.toUpperCase());
 
 	const files = [
-		'22_new_tool.png',
-		'24_scmp.png',
-		'12_flowing-data.webp',
-		'28_modeling.png',
-		'23_seasons.png',
-		'13_ecosystems.webp',
-		'17_remake.png',
-		'21_historical.png',
-		'19_evolution.png',
-		'14_trade.webp',
-		'11_physical.webp',
-		'30_ghde.png',
-		'29_monochrome.png',
-		'big_cats_of_india_conservation.png',
-		'18_unicef.png',
-		'08_circular.webp',
-		'02_pictogram.webp',
-		'01_part-to-whole.webp'
+		'static__5.png',
+		'static__2.png',
+		'static__19.png',
+		'static__3.png',
+		'static__8.png',
+		'static__6.webp',
+		'static__4.png',
+		'static__0.png',
+		'static__10.png',
+		'static__11.png',
+		'static__12.png',
+		'static__13.png',
+		'static__14.png',
+		'static__15.png',
+		'static__18.png',
+		'static__1.png',
+		'static__21.webp',
+		'static__22.webp',
+		'static__23.png',
+		'static__24.webp',
+		'static__7.png'
 	];
 
 	const items = files.map((file) => ({
@@ -39,15 +42,37 @@
 		title: '#' + toTitle(file)
 	}));
 
-	const videoItem = {
-		src: '/videos/charts/30day2026/20_global_change_color.mp4',
-		title: '#20 Global Change',
-		isVideo: true,
-		videoSize: '1280-720',
-		poster: '/videos/charts/30day2026/20_global_change_color.png'
-	};
+	const videoItem = [
+		{
+			src: '/videos/Chasing_Love.mp4',
+			title: 'Chasing Love in Hollywood Rom-coms',
+			isVideo: true,
+			videoSize: '1280-720',
+			poster: '/videos/Chasing_Love.jpg'
+		},
+		{
+			src: '/videos/OBEs.mp4',
+			title: 'Out of Body Experiences and their stories',
+			isVideo: true,
+			videoSize: '1280-720',
+			poster: '/videos/OBEs.jpg'
+		},
+		{
+			src: '/videos/Manta_Rays_H.mp4',
+			title: 'Manta Rays Observations off the coast of Australia',
+			isVideo: true,
+			poster: '/videos/Manta_Rays.jpg'
+		},
+		{
+			src: '/videos/IPL_Team_Valuations.mp4',
+			title: 'IPL Team Valuations',
+			isVideo: true,
+			videoSize: '1280-720',
+			poster: '/videos/IPL_Team_Valuations.jpg'
+		}
+	];
 
-	const galleryItems = [videoItem, ...items];
+	const galleryItems = [...videoItem, ...items];
 
 	let galleryEl;
 	let galleryInstance;
@@ -77,12 +102,12 @@
 			class=" card-custom relative mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
 		>
 			<div class="">
-				<h1 class="text-4xl font-black tracking-tight sm:text-5xl">Gallery</h1>
+				<h1 class="text-4xl font-black tracking-tight sm:text-5xl">Data Viz Gallery</h1>
 				<p class="mt-3 max-w-2xl text-base-content/70">
-					A curated set from the 30 Day 2026 charts challenge.
+					A curated collection of data visualisations from public challenges like the
+					#30DayChartChallenge and #TidyTuesday
 				</p>
 			</div>
-			<span class="badge badge-outline">30 Day 2026</span>
 		</div>
 
 		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" bind:this={galleryEl}>
@@ -130,9 +155,6 @@
 							</a>
 						{/if}
 					</div>
-					<figcaption class="p-4 text-sm font-semibold text-base-content/80">
-						{item.title}
-					</figcaption>
 				</figure>
 			{/each}
 		</div>
