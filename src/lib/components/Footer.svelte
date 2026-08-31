@@ -4,7 +4,7 @@
 	<nav>
 		<div class="grid grid-flow-col gap-4">
 			<!--Linkedin-->
-			<a href="https://linkedin.com/in/byte-charts" target="_blank">
+			<a href="https://linkedin.com/company/byte-charts" target="_blank">
 				<svg
 					class="fill-base-content"
 					role="img"
@@ -34,7 +34,7 @@
 				</svg>
 			</a>
 			<!--Twitter/X-->
-			<a href="https://x.com/byte_charts" target="_blank">
+			<a href="https://x.com/bytecharts1" target="_blank">
 				<svg
 					role="img"
 					class="fill-base-content"
@@ -82,7 +82,7 @@
 			</a>
 
 			<!--Instagram-->
-			<a href="https://www.instagram.com/byte.charts/" target="_blank">
+			<a href="https://www.instagram.com/byte_charts/" target="_blank">
 				<svg
 					role="img"
 					class="fill-base-content"
