@@ -9,5 +9,5 @@ export const load = async ({ params }) => {
 	}
 
 	const post = await match[1]();
-	return { meta: post.metadata ?? {}, content: post.default };
+	return { slug: params.slug, meta: post.metadata ?? {}, content: post.default };
 };

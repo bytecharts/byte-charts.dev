@@ -1,6 +1,7 @@
 <script>
 	const { data } = $props();
 	const Post = data.content;
+	const canonical = `https://byte-charts.dev/blog/${data.slug ?? ''}`;
 	const formatter = new Intl.DateTimeFormat('en-US', {
 		year: 'numeric',
 		month: 'long',
@@ -14,6 +15,23 @@
 		return formatter.format(parsed);
 	};
 </script>
+
+<svelte:head>
+	<title>{data.meta?.title ?? 'TODO: Page Title'} — Byte Charts</title>
+	<meta name="description" content={data.meta?.excerpt ?? 'TODO: Meta description'} />
+	<link rel="canonical" href={canonical} />
+	<meta property="og:title" content={data.meta?.title ?? 'TODO: OG title'} />
+	<meta property="og:description" content={data.meta?.excerpt ?? 'TODO: OG description'} />
+	<meta property="og:url" content={canonical} />
+	<meta property="og:type" content="article" />
+	<meta property="og:image" content={data.meta?.cover ?? 'TODO: OG image URL'} />
+	<meta property="article:published_time" content={data.meta?.date} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={data.meta?.title ?? 'TODO: Twitter title'} />
+	<meta name="twitter:description" content={data.meta?.excerpt ?? 'TODO: Twitter description'} />
+	<meta name="twitter:image" content={data.meta?.cover ?? 'TODO: Twitter image URL'} />
+	{@html `<script type="application/ld+json">${JSON.stringify({"@context":"https://schema.org","@type":"BlogPosting","headline":data.meta?.title ?? "TODO","datePublished":data.meta?.date,"description":data.meta?.excerpt ?? "TODO","image":data.meta?.cover ?? "TODO","url":canonical,"author":{"@type":"Person","name":"TODO: Author name"},"publisher":{"@type":"Organization","name":"Byte Charts","logo":{"@type":"ImageObject","url":"TODO: logo URL"}}})}</script>`}
+</svelte:head>
 
 <main class="bg-base-100">
 	<section class="px-6 py-16">

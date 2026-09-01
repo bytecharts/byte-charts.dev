@@ -15,11 +15,14 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
 	<link rel="shortcut icon" href="/images/favicon.ico" />
 	<meta charset="UTF-8" />
-	<title>Byte Charts - Blog on data visualization</title>
 	<meta
 		name="viewport"
-		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		content="width=device-width, initial-scale=1"
 	/>
+	<title>Byte Charts - Blog on data visualization</title>
+	<meta name="description" content="TODO: Global fallback meta description" />
+	<meta property="og:site_name" content="Byte Charts" />
+	<meta property="og:locale" content="en_US" />
 </svelte:head>
 
 <BGPattern class="fixed inset-0 z-0" />

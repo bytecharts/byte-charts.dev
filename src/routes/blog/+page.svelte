@@ -1,6 +1,12 @@
 <script>
 	import BGPattern from '$lib/components/BGPattern.svelte';
 	const { data } = $props();
+
+	const canonicalBase = 'https://byte-charts.dev/blog';
+	const canonical = data?.selectedTag
+		? `${canonicalBase}?tag=${encodeURIComponent(data.selectedTag)}`
+		: canonicalBase;
+
 	const formatter = new Intl.DateTimeFormat('en-US', {
 		year: 'numeric',
 		month: 'long',
@@ -26,13 +32,32 @@
 		: data.posts;
 </script>
 
+<svelte:head>
+	<title>TODO: Page Title</title>
+	<meta name="description" content="TODO: Meta description" />
+	<link rel="canonical" href={canonical} />
+	<meta property="og:title" content="TODO: OG title" />
+	<meta property="og:description" content="TODO: OG description" />
+	<meta property="og:url" content={canonical} />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="TODO: OG image URL" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="TODO: Twitter title" />
+	<meta name="twitter:description" content="TODO: Twitter description" />
+	<meta name="twitter:image" content="TODO: Twitter image URL" />
+	{#if data?.selectedTag}
+		<meta name="robots" content="noindex, follow" />
+	{/if}
+	{@html `<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Blog","url":"https://byte-charts.dev/blog","description":"TODO: Description"}</script>`}
+</svelte:head>
+
 <main class="min-h-screen bg-base-100">
 	<section class="px-6 py-16">
 		<div class="relative mx-auto max-w-6xl">
 			<header class="card-custom z-50 mb-12">
-				<h1 class="text-4xl font-black tracking-tight sm:text-5xl">Blog</h1>
+				<h1 class="text-4xl font-black tracking-wide sm:text-5xl">Notes</h1>
 				<p class="mt-3 max-w-2xl text-base-content/70">
-					Musings on data, sketches, and generative art.
+					Ideas, sketches, observations, and other things I find interesting.
 				</p>
 			</header>
 

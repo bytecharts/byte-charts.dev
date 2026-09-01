@@ -112,11 +112,6 @@
 			<a href="/" class="brand-logo btn-ghost">
 				<img src="/images/byte-charts.svg" alt="Byte Charts Logo" class="logo-img" />
 			</a>
-
-			<span
-				class="header-font text-1xl font-black tracking-wide uppercase
-				md:text-3xl">Byte Charts</span
-			>
 		</div>
 
 		<!--Left Side-->
@@ -183,6 +178,7 @@
 		font-family: 'Space Grotesk', sans;
 		font-size: 1.575rem;
 		font-weight: 700;
+		letter-spacing: 0.05em;
 	}
 	.brand-logo {
 		height: 64px;

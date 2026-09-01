@@ -12,8 +12,8 @@
 	let rows = 0;
 
 	onMount(() => {
-		const cellSize = 5;
-		const PAD = 2;
+		const cellSize = 8;
+		const PAD = 0;
 
 		if (!canvas || !container) return;
 
@@ -47,7 +47,7 @@
 
 			light: {
 				bg: '#fff',
-				grid: '#ccc',
+				grid: '#ddd',
 
 				shades: (v) => {
 					const i = 255 - v;

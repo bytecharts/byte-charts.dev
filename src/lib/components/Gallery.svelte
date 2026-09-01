@@ -102,10 +102,15 @@
 			class=" card-custom relative mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
 		>
 			<div class="">
-				<h1 class="text-4xl font-black tracking-tight sm:text-5xl">Data Viz Gallery</h1>
+				<h1
+					class="text-4xl font-black tracking-wide
+					sm:text-5xl"
+				>
+					Visual Stories
+				</h1>
 				<p class="mt-3 max-w-2xl text-base-content/70">
-					A curated collection of data visualisations from public challenges like the
-					#30DayChartChallenge and #TidyTuesday
+					A curated collection of work from public challenges like #30DayChartChallenge and
+					#TidyTuesday, exploring patterns and stories that emerge from the data.
 				</p>
 			</div>
 		</div>
