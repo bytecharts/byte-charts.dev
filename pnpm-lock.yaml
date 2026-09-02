@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@masonry-grid/svelte':
+        specifier: ^1.1.1
+        version: 1.1.1(svelte@5.55.5)
       lightgallery:
         specifier: ^2.9.0
         version: 2.9.0
@@ -367,6 +370,16 @@ packages:
 
   '@lix-js/server-protocol-schema@0.1.1':
     resolution: {integrity: sha512-jBeALB6prAbtr5q4vTuxnRZZv1M2rKe8iNqRQhFJ4Tv7150unEa0vKyz0hs8Gl3fUGsWaNJBh3J8++fpbrpRBQ==}
+
+  '@masonry-grid/svelte@1.1.1':
+    resolution: {integrity: sha512-AJnXk2gnzwDvprY+kCbtFz6z/sdikPxLlDiBi4W+iZjiHqj3odqwr2x/OWCs1GfmjSu78ED5Stdh9Tn73qWx+g==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      svelte: ^5.0.0
+
+  '@masonry-grid/vanilla@1.1.0':
+    resolution: {integrity: sha512-bHpdnA3xBzBey0PpHvrBYs9IZ8vn5VevP75+Vdg5Dqlsez/hufJZ7oRh5rrDK1aAaggoN+FM5fXPdaXOuEvf4Q==}
+    engines: {node: '>=16'}
 
   '@napi-rs/wasm-runtime@1.1.4':
     resolution: {integrity: sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow==}
@@ -1793,6 +1806,13 @@ snapshots:
       - babel-plugin-macros
 
   '@lix-js/server-protocol-schema@0.1.1': {}
+
+  '@masonry-grid/svelte@1.1.1(svelte@5.55.5)':
+    dependencies:
+      '@masonry-grid/vanilla': 1.1.0
+      svelte: 5.55.5
+
+  '@masonry-grid/vanilla@1.1.0': {}
 
   '@napi-rs/wasm-runtime@1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:

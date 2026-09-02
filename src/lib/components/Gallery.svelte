@@ -118,7 +118,7 @@
 		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" bind:this={galleryEl}>
 			{#each galleryItems as item}
 				<figure class="gallery-card z-50 overflow-hidden border border-base-300 bg-base-100/80">
-					<div class="aspect-[4/3] overflow-hidden bg-base-200">
+					<div class="aspect-auto overflow-hidden bg-base-200">
 						{#if item.isVideo}
 							<a
 								class="gallery-item gallery-item--video"

@@ -1,0 +1,261 @@
+
+<script>
+	import { onMount } from 'svelte';
+	import { darkTheme } from '$lib/stores/theme.js';
+
+	let isDark = false;
+	let canvas;
+	let container;
+	let ctx;
+	let width = 0;
+	let height = 0;
+	let cols = 0;
+	let rows = 0;
+
+	onMount(() => {
+		const cellSize = 8;
+		const PAD = 0;
+
+		if (!canvas || !container) return;
+
+		ctx = canvas.getContext('2d');
+
+		function setSize() {
+			if (!canvas || !container) return;
+
+			const rect = container.getBoundingClientRect();
+			const nextWidth = Math.max(1, Math.floor(rect.width));
+			const nextHeight = Math.max(1, Math.floor(rect.height));
+
+			if (nextWidth === width && nextHeight === height) return;
+
+			width = nextWidth;
+			height = nextHeight;
+			canvas.width = width;
+			canvas.height = height;
+			cols = Math.floor(width / cellSize);
+			rows = Math.floor(height / cellSize);
+		}
+
+		// THEMES
+		const themes = {
+			dark: {
+				bg: '#000',
+				grid: '#222',
+
+				shades: (v) => `rgb(${v},${v},${v})`
+			},
+
+			light: {
+				bg: '#fff',
+				grid: '#ddd',
+
+				shades: (v) => {
+					const i = 255 - v;
+
+					return `rgb(${i},${i},${i})`;
+				}
+			}
+		};
+
+		function theme() {
+			return isDark ? themes.dark : themes.light;
+		}
+
+		function colorWithAlpha(shade = 255) {
+			const alpha = Math.max(0, Math.min(1, shade / 255));
+			return `rgba(${activeColorRgb.r}, ${activeColorRgb.g}, ${activeColorRgb.b}, ${alpha})`;
+		}
+
+		// GRID
+		let animationFrame;
+		let zOffset = 0;
+
+		function drawGrid(time = 0) {
+			const t = theme();
+
+			ctx.fillStyle = t.bg;
+			ctx.fillRect(0, 0, width, height);
+
+			ctx.strokeStyle = t.grid;
+			ctx.lineWidth = 2;
+
+			const spacing = 8;
+
+			// Size of each XY plane
+			const gridWidth = 1080;
+			const gridHeight = 1920;
+
+			const halfW = gridWidth / 2;
+			const halfH = gridHeight / 2;
+
+			// Number of planes
+			const layers = 25;
+
+			// Distance between Z planes
+			const zSpacing = 120;
+
+			// Camera / perspective
+			const fov = 300;
+			const cameraZ = -100;
+
+			function project(x, y, z) {
+				const depth = z - cameraZ;
+				const scale = fov / depth;
+
+				return {
+					x: width / 2 + x * scale,
+					y: height / 2 + y * scale
+				};
+			}
+
+			// -------------------------
+			// Moving Z offset
+			// -------------------------
+
+			const speed = 0.005;
+
+			zOffset = (time * speed) % zSpacing;
+
+			// -------------------------
+			// XY planes
+			// -------------------------
+
+			for (let i = 0; i < layers; i++) {
+				const z = i * zSpacing - zOffset;
+
+				// Don't draw planes behind camera
+				if (z <= cameraZ + 1) continue;
+
+				// Horizontal lines
+				for (let y = -halfH; y <= halfH; y += spacing) {
+					const a = project(-halfW, y, z);
+					const b = project(halfW, y, z);
+
+					ctx.beginPath();
+					ctx.moveTo(a.x, a.y);
+					ctx.lineTo(b.x, b.y);
+					ctx.stroke();
+				}
+
+				// Vertical lines
+				for (let x = -halfW; x <= halfW; x += spacing) {
+					const a = project(x, -halfH, z);
+					const b = project(x, halfH, z);
+
+					ctx.beginPath();
+					ctx.moveTo(a.x, a.y);
+					ctx.lineTo(b.x, b.y);
+					ctx.stroke();
+				}
+			}
+		}
+
+		function project(x, y, z) {
+			const fov = 500;
+
+			const cameraZ = -300;
+			const depth = z - cameraZ;
+
+			const scale = fov / depth;
+
+			return {
+				x: width / 2 + x * scale,
+				y: height / 2 + y * scale
+			};
+		}
+
+		function drawGrid2() {
+			const t = theme();
+
+			ctx.fillStyle = t.bg;
+
+			ctx.fillRect(0, 0, width, height);
+
+			ctx.strokeStyle = t.grid;
+
+			for (let y = 0; y < rows; y++) {
+				for (let x = 0; x < cols; x++) {
+					ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
+				}
+			}
+		}
+
+		// CELL
+		function drawCell(x, y, z, shade = 255) {
+			const size = 8;
+
+			const p1 = project(x, y, z);
+			const p2 = project(x + size, y, z);
+			const p3 = project(x + size, y + size, z);
+			const p4 = project(x, y + size, z);
+
+			ctx.fillStyle = colorWithAlpha(shade);
+
+			ctx.beginPath();
+			ctx.moveTo(p1.x, p1.y);
+			ctx.lineTo(p2.x, p2.y);
+			ctx.lineTo(p3.x, p3.y);
+			ctx.lineTo(p4.x, p4.y);
+			ctx.closePath();
+			ctx.fill();
+		}
+		function drawCell2(col, row, shade = 255) {
+			if (col < PAD || col >= cols - PAD || row < PAD || row >= rows - PAD) return;
+
+			ctx.fillStyle = colorWithAlpha(shade);
+
+			ctx.fillRect(col * cellSize + 1, row * cellSize + 1, cellSize - 2, cellSize - 2);
+		}
+		function animate(time) {
+			drawGrid(time);
+			animationFrame = requestAnimationFrame(animate);
+		}
+
+		animate();
+
+		function render() {
+			if (!ctx || cols === 0 || rows === 0) return;
+
+			drawGrid();
+		}
+
+		setSize();
+		render();
+
+		const resizeObserver = new ResizeObserver(() => {
+			setSize();
+			render();
+		});
+		resizeObserver.observe(container);
+		const unsubscribe = darkTheme.subscribe((value) => {
+			isDark = value;
+			render();
+		});
+
+		return () => {
+			cancelAnimationFrame(animationFrame);
+			resizeObserver.disconnect();
+			unsubscribe();
+		};
+	});
+</script>
+
+<div class="bg-canvas" bind:this={container}>
+	<canvas bind:this={canvas}></canvas>
+</div>
+
+<style>
+	.bg-canvas {
+		position: fixed;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+	canvas {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+</style>

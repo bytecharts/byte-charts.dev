@@ -1,5 +1,5 @@
 <footer
-	class="footer-center relative z-50 footer footer-horizontal rounded bg-base-100 p-4 text-base-content"
+	class="relative z-50 footer footer-center footer-horizontal rounded bg-base-100 p-4 text-base-content"
 >
 	<nav>
 		<div class="grid grid-flow-col gap-4">

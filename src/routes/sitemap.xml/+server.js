@@ -16,12 +16,15 @@ export async function GET() {
 	const posts = await loadPosts();
 
 	const postEntries = posts.map((post) => {
-		const lastmod = post.meta?.date ? new Date(post.meta.date).toISOString() : new Date().toISOString();
+		const lastmod = post.meta?.date
+			? new Date(post.meta.date).toISOString()
+			: new Date().toISOString();
 		return `\t<url>\n\t\t<loc>${BASE_URL}/blog/${post.slug}</loc>\n\t\t<lastmod>${lastmod}</lastmod>\n\t\t<changefreq>monthly</changefreq>\n\t\t<priority>0.7</priority>\n\t</url>`;
 	});
 
 	const staticEntries = staticPages.map(
-		(page) => `\t<url>\n\t\t<loc>${BASE_URL}${page.path}</loc>\n\t\t<changefreq>${page.changefreq}</changefreq>\n\t\t<priority>${page.priority}</priority>\n\t</url>`
+		(page) =>
+			`\t<url>\n\t\t<loc>${BASE_URL}${page.path}</loc>\n\t\t<changefreq>${page.changefreq}</changefreq>\n\t\t<priority>${page.priority}</priority>\n\t</url>`
 	);
 
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>

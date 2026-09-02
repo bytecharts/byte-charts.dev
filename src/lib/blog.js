@@ -19,7 +19,10 @@ export const loadPosts = async () => {
 			const post = await resolver();
 			const meta = post.metadata ?? {};
 			return {
-				slug: path.split('/').pop().replace(/\.(md|svx)$/, ''),
+				slug: path
+					.split('/')
+					.pop()
+					.replace(/\.(md|svx)$/, ''),
 				meta: {
 					...meta,
 					tags: normalizeTags(meta.tags)

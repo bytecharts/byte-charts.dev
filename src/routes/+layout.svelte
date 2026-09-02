@@ -15,10 +15,7 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
 	<link rel="shortcut icon" href="/images/favicon.ico" />
 	<meta charset="UTF-8" />
-	<meta
-		name="viewport"
-		content="width=device-width, initial-scale=1"
-	/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Byte Charts - Blog on data visualization</title>
 	<meta name="description" content="TODO: Global fallback meta description" />
 	<meta property="og:site_name" content="Byte Charts" />

@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import { darkTheme } from '$lib/stores/theme.js';
 	let theme = $state('bc-light');
@@ -67,7 +68,14 @@
 						<a class="brand-link hvr-lines-square tracking-normal" href="/gallery">Gallery</a>
 					</li>
 					<li><a class="brand-link hvr-lines-square tracking-normal" href="/blog">Blog</a></li>
-					<li><a class="brand-link hvr-lines-square tracking-normal" href="/about">About</a></li>
+					<li>
+						<a
+							class="brand-link hvr-lines-square tracking-normal"
+							class:active-link={page.url.pathname === '/about'}
+							data-sveltekit-preload-data="false"
+							href="/about">About</a
+						>
+					</li>
 
 					<!--Theme Toggler-->
 					<li class="m-auto">
@@ -179,6 +187,13 @@
 		font-size: 1.575rem;
 		font-weight: 700;
 		letter-spacing: 0.05em;
+		background-color: transparent;
+		background-image: none;
+	}
+
+	.active-link {
+		background-color: #000 !important;
+		color: #fff !important;
 	}
 	.brand-logo {
 		height: 64px;

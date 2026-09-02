@@ -41,6 +41,7 @@
 		"vitest-browser-svelte": "^2.1.0"
 	},
 	"dependencies": {
+		"@masonry-grid/svelte": "^1.1.1",
 		"lightgallery": "^2.9.0"
 	}
 }
