@@ -27,11 +27,9 @@
 		<div class=" hero-content mb-50 bg-base-200/50 p-10 text-center">
 			<div class="max-w-md">
 				<div class="text-center text-4xl md:text-5xl">
-					<h1 class="text-center font-black tracking-normal">Visual Stories</h1>
+					<h1 class="text-center font-black tracking-normal">Work in Progress</h1>
 				</div>
-				<p class="mt-3 max-w-2xl text-base-content/70">
-					Ideas, sketches, observations, and other things I find interesting.
-				</p>
+				<p class="mt-3 max-w-2xl text-base-content/70"></p>
 			</div>
 		</div>
 	</div>
