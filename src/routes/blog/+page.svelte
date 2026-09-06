@@ -69,7 +69,11 @@
 					<p class="text-xs tracking-[0.2em] text-base-content/50 uppercase">Tags</p>
 					<ul class="mt-4 flex flex-wrap gap-2">
 						<li>
-							<a href="/blog" class={`badge badge-outline ${selectedTag ? '' : 'badge-neutral'}`}>
+							<a
+								href="/blog"
+								aria-current={!selectedTag ? 'true' : undefined}
+								class={`badge badge-outline ${selectedTag ? '' : 'badge-neutral'}`}
+							>
 								All
 							</a>
 						</li>
@@ -77,7 +81,8 @@
 							<li>
 								<a
 									href={`/blog?tag=${encodeURIComponent(tag)}`}
-									class={`badge badge-outline ${selectedTag === tag ? 'badge-neutral' : ''}`}
+									aria-current={selectedTag === tag ? 'true' : undefined}
+									class={` badge badge-outline ${selectedTag === tag ? 'badge-neutral' : ''}`}
 								>
 									{tag}
 								</a>
@@ -92,33 +97,29 @@
 					{:else}
 						{#each filteredPosts as post}
 							<article
-								class=" hvr-lines-square grid gap-4 border
+								class=" hvr-lines-square relative grid gap-4 border
 								border-base-300 bg-base-100/80 p-6"
 							>
 								{#if post.meta?.cover}
-									<a href={`/blog/${post.slug}`} class="block">
-										<img
-											src={post.meta.cover}
-											alt={post.meta?.title}
-											loading="lazy"
-											class="h-56 w-full object-cover"
-										/>
-									</a>
+									<img
+										src={post.meta.cover}
+										alt={post.meta?.title}
+										loading="lazy"
+										class="h-56 w-full object-cover"
+									/>
 								{/if}
 								<div class="flex flex-col gap-2">
 									<p class="text-xs tracking-[0.2em] text-base-content/50 uppercase">
 										{formatDate(post.meta?.date)}
 									</p>
 									<h2 class="text-2xl font-bold">
-										<a href={`/blog/${post.slug}`} class="hvr-lines-square">
-											{post.meta?.title}
-										</a>
+										{post.meta?.title}
 									</h2>
 									{#if post.meta?.excerpt}
 										<p class="text-base-content/70">{post.meta.excerpt}</p>
 									{/if}
 									{#if post.meta?.tags?.length}
-										<div class="flex flex-wrap gap-2">
+										<div class="relative z-10 flex flex-wrap gap-2">
 											{#each post.meta.tags as tag}
 												<a
 													href={`/blog?tag=${encodeURIComponent(tag)}`}
@@ -130,6 +131,13 @@
 										</div>
 									{/if}
 								</div>
+								<a
+									href={`/blog/${post.slug}`}
+									class="absolute inset-0"
+									aria-label={`Read: ${post.meta?.title}`}
+								>
+									<span class="sr-only">{post.meta?.title}</span>
+								</a>
 							</article>
 						{/each}
 					{/if}

@@ -37,7 +37,7 @@
 	<section class="px-6 py-16">
 		<div class="mx-auto max-w-3xl">
 			<nav class="mb-8 text-sm">
-				<a href="/blog" class="hvr-lines-square">Back to Blog</a>
+				<a href="/blog" class="hvr-lines-square-sm">Back to Blog</a>
 			</nav>
 			<header class="mb-10">
 				<p class="text-xs tracking-[0.2em] text-base-content/50 uppercase">
