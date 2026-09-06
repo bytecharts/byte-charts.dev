@@ -22,9 +22,9 @@
 </svelte:head>
 
 <main>
-	<div class="hero min-h-screen bg-base-100">
+	<div class="hero relative min-h-screen bg-base-100">
 		<Hero />
-		<div class=" hero-content mb-50 bg-base-200/50 p-10 text-center">
+		<div class=" hero-content relative z-10 mb-50 bg-base-200/50 p-10 text-center">
 			<div class="max-w-md">
 				<div class="text-center text-4xl md:text-5xl">
 					<h1 class="text-center font-black tracking-normal">Work in Progress</h1>

@@ -11,7 +11,20 @@
 	let cols = 0;
 	let rows = 0;
 
-	let videoSrc = '/videos/backdrop.mp4';
+	// Static chart thumbnails + video, revealed with a pixelation effect behind the canvas grid.
+	// duration is per-slide milliseconds. Videos default to their full runtime.
+	const slides = [
+		{ src: '/videos/Climate_Stripes_SFX.mp4', type: 'video' },
+		{ src: '/images/charts/gallery/thumbs/static__0.webp', type: 'image', duration: 5500 },
+		{ src: '/images/charts/gallery/thumbs/static__23.webp', type: 'image', duration: 5500 },
+		{ src: '/images/charts/gallery/thumbs/static__3.webp', type: 'image', duration: 5500 },
+		{ src: '/images/charts/gallery/thumbs/static__8.webp', type: 'image', duration: 5500 },
+		{ src: '/images/charts/gallery/thumbs/static__1.webp', type: 'image', duration: 5500 }
+	];
+
+	const SLIDE_INTERVAL = 5500;
+	const REVEAL_DURATION = 1000;
+	const MAX_PIXEL_BLOCK = 48;
 
 	onMount(() => {
 		// ============================================
@@ -19,7 +32,6 @@
 		// ============================================
 
 		const cellSize = 8;
-		const PAD = 0;
 
 		if (!canvas || !container) return;
 
@@ -70,38 +82,6 @@
 			return isDark ? themes.dark : themes.light;
 		}
 
-		function hexToRgb(hex) {
-			const value = hex.replace('#', '');
-			const full =
-				value.length === 3
-					? value
-							.split('')
-							.map((c) => c + c)
-							.join('')
-					: value;
-			const int = Number.parseInt(full, 16);
-			return {
-				r: (int >> 16) & 255,
-				g: (int >> 8) & 255,
-				b: int & 255
-			};
-		}
-
-		const chartPalette = ['#F07178', '#6C5CE7', '#FFB454'];
-
-		let activeColor = chartPalette[0];
-		let activeColorRgb = hexToRgb(activeColor);
-
-		function setActiveColor(color) {
-			activeColor = color;
-			activeColorRgb = hexToRgb(color);
-		}
-
-		function colorWithAlpha(shade = 255) {
-			const alpha = Math.max(0, Math.min(1, shade / 255));
-			return `rgba(${activeColorRgb.r}, ${activeColorRgb.g}, ${activeColorRgb.b}, ${alpha})`;
-		}
-
 		// ============================================
 		// GRID
 		// ============================================
@@ -109,89 +89,238 @@
 		function drawGrid() {
 			const t = theme();
 
-			ctx.fillStyle = t.bg;
+			// Transparent background so the thumbnail slideshow shows through.
+			octx.clearRect(0, 0, width, height);
 
-			ctx.fillRect(0, 0, width, height);
-
-			ctx.strokeStyle = t.grid;
+			octx.save();
+			octx.globalAlpha = 0.22;
+			octx.strokeStyle = t.grid;
 
 			for (let y = 0; y < rows; y++) {
 				for (let x = 0; x < cols; x++) {
-					ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
+					octx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
 				}
 			}
+			octx.restore();
 		}
 
 		// ============================================
-		// CELL
+		// OVERLAY (grid, pre-rendered once)
 		// ============================================
 
-		function drawCell(col, row, shade = 255) {
-			if (col < PAD || col >= cols - PAD || row < PAD || row >= rows - PAD) return;
+		const overlay = document.createElement('canvas');
+		const octx = overlay.getContext('2d');
 
-			ctx.fillStyle = colorWithAlpha(shade);
-
-			ctx.fillRect(col * cellSize + 1, row * cellSize + 1, cellSize - 2, cellSize - 2);
-		}
-
-		function heatmap() {
-			for (let y = 4; y < rows - 4; y++) {
-				for (let x = 4; x < cols - 4; x++) {
-					const v = (Math.sin(x * 0.08) + Math.cos(y * 0.06) + Math.sin((x + y) * 0.04)) / 3;
-
-					const shade = Math.floor(((v + 1) / 2) * 255);
-
-					drawCell(x, y, shade);
-				}
-			}
-		}
-
-		// ============================================
-		// CHART REGISTRY
-		// ============================================
-
-		const charts = [
-			{
-				name: 'HEATMAP',
-				fn: heatmap
-			}
-		];
-
-		// ============================================
-		// ANIMATION
-		// ============================================
-
-		let current = 0;
-
-		function render() {
-			if (!ctx || cols === 0 || rows === 0) return;
-
+		function renderOverlay() {
+			overlay.width = width;
+			overlay.height = height;
 			drawGrid();
+		}
 
-			const chart = charts[current];
-			setActiveColor(chartPalette[current % chartPalette.length]);
+		// ============================================
+		// PIXELATED SLIDESHOW
+		// ============================================
 
-			chart.fn();
+		const loaders = slides.map((slide) => {
+			if (slide.type === 'video') {
+				const video = document.createElement('video');
+				video.muted = true;
+				video.loop = false;
+				video.playsInline = true;
+				video.preload = 'auto';
+				video.src = slide.src;
+				video.addEventListener('loadedmetadata', () => {
+					// Metadata may arrive after the slot was scheduled — reschedule with full duration.
+					if (loaders[slideIndex] === video) scheduleNext();
+				});
+				return video;
+			}
+			const img = new Image();
+			img.decoding = 'async';
+			img.src = slide.src;
+			return img;
+		});
 
-			current = (current + 1) % charts.length;
+		const pixelCanvas = document.createElement('canvas');
+		const pctx = pixelCanvas.getContext('2d');
+
+		let slideIndex = 0;
+		let slideStart = performance.now();
+
+		const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+		const COLOR_REVEAL_DURATION = 3000;
+
+		function sourceDims(source) {
+			if (source instanceof HTMLVideoElement) {
+				if (source.readyState < 2 || !source.videoWidth) return null;
+				return { w: source.videoWidth, h: source.videoHeight };
+			}
+			if (!source.complete || !source.naturalWidth) return null;
+			return { w: source.naturalWidth, h: source.naturalHeight };
+		}
+
+		function blit(source, sw, sh, dx, dy, dw, dh, pixelated, progress, filter) {
+			ctx.save();
+			ctx.filter = filter;
+
+			if (pixelated) {
+				const block = Math.max(1, Math.ceil(MAX_PIXEL_BLOCK * (1 - easeOutCubic(progress))));
+				const tw = Math.max(1, Math.ceil(dw / block));
+				const th = Math.max(1, Math.ceil(dh / block));
+				pixelCanvas.width = tw;
+				pixelCanvas.height = th;
+				pctx.drawImage(source, 0, 0, sw, sh, 0, 0, tw, th);
+				ctx.imageSmoothingEnabled = false;
+				ctx.drawImage(pixelCanvas, 0, 0, tw, th, dx, dy, dw, dh);
+				ctx.imageSmoothingEnabled = true;
+			} else {
+				ctx.drawImage(source, 0, 0, sw, sh, dx, dy, dw, dh);
+			}
+
+			ctx.restore();
+		}
+
+		function isVideoSlide(index) {
+			return loaders[index] instanceof HTMLVideoElement;
+		}
+
+		function playActiveVideo() {
+			const active = loaders[slideIndex];
+			if (active instanceof HTMLVideoElement) {
+				active.play().catch(() => {});
+			}
+		}
+
+		function pauseVideo(index) {
+			const source = loaders[index];
+			if (source instanceof HTMLVideoElement) {
+				source.pause();
+			}
+		}
+
+		function drawPhoto() {
+			const source = loaders[slideIndex];
+			const dims = source ? sourceDims(source) : null;
+			if (!dims) return;
+
+			// Contain-fit, centered.
+			const scale = Math.min(width / dims.w, height / dims.h);
+			const dw = Math.max(1, Math.floor(dims.w * scale));
+			const dh = Math.max(1, Math.floor(dims.h * scale));
+			const dx = Math.floor((width - dw) / 2);
+			const dy = Math.floor((height - dh) / 2);
+
+			const now = performance.now();
+			const pixelProgress = Math.min(1, (now - slideStart) / REVEAL_DURATION);
+			const colorProgress = Math.min(
+				1,
+				Math.max(0, (now - slideStart - REVEAL_DURATION) / COLOR_REVEAL_DURATION)
+			);
+
+			// Grayscale base, pixelated while revealing.
+			blit(
+				source,
+				dims.w,
+				dims.h,
+				dx,
+				dy,
+				dw,
+				dh,
+				pixelProgress < 1,
+				pixelProgress,
+				'grayscale(1) blur(2px)'
+			);
+
+			// Slow color fade once the image is in focus.
+			if (colorProgress > 0) {
+				ctx.save();
+				ctx.globalAlpha = easeOutCubic(colorProgress);
+				blit(source, dims.w, dims.h, dx, dy, dw, dh, false, 1, 'blur(2px)');
+				ctx.restore();
+			}
+		}
+
+		// Animation loop runs only during reveal + color fade, then stops to save CPU.
+		// Video slides keep animating for their full slot since every frame is new.
+		let raf = 0;
+		let animating = false;
+
+		function paint() {
+			if (!ctx || cols === 0 || rows === 0) return;
+			ctx.clearRect(0, 0, width, height);
+			drawPhoto();
+			ctx.drawImage(overlay, 0, 0);
+		}
+
+		function frame() {
+			paint();
+			if (
+				isVideoSlide(slideIndex) ||
+				performance.now() - slideStart < REVEAL_DURATION + COLOR_REVEAL_DURATION
+			) {
+				raf = requestAnimationFrame(frame);
+			} else {
+				animating = false;
+			}
+		}
+
+		function kick() {
+			if (!animating) {
+				animating = true;
+				raf = requestAnimationFrame(frame);
+			}
 		}
 
 		setSize();
-		render();
+		renderOverlay();
+		playActiveVideo();
+		kick();
 
-		const interval = setInterval(render, 2000);
+		function slotDuration() {
+			const slide = slides[slideIndex];
+			if (typeof slide.duration === 'number' && slide.duration > 0) return slide.duration;
+			const active = loaders[slideIndex];
+			if (active instanceof HTMLVideoElement && Number.isFinite(active.duration)) {
+				return Math.max(1000, active.duration * 1000);
+			}
+			return SLIDE_INTERVAL;
+		}
+
+		let timer = 0;
+
+		function scheduleNext() {
+			clearTimeout(timer);
+			timer = setTimeout(advance, slotDuration());
+		}
+
+		function advance() {
+			pauseVideo(slideIndex);
+			slideIndex = (slideIndex + 1) % slides.length;
+			slideStart = performance.now();
+			playActiveVideo();
+			kick();
+			scheduleNext();
+		}
+
+		scheduleNext();
 		const resizeObserver = new ResizeObserver(() => {
 			setSize();
-			render();
+			renderOverlay();
+			paint();
 		});
 		resizeObserver.observe(container);
 		const unsubscribe = darkTheme.subscribe((value) => {
 			isDark = value;
-			render();
+			renderOverlay();
+			paint();
 		});
 
 		return () => {
-			clearInterval(interval);
+			cancelAnimationFrame(raf);
+			animating = false;
+			clearTimeout(timer);
+			pauseVideo(slideIndex);
 			resizeObserver.disconnect();
 			unsubscribe();
 		};
@@ -199,9 +328,6 @@
 </script>
 
 <div class="hero-canvas" bind:this={container}>
-	{#if videoSrc}
-		<video class="hero-video" src={videoSrc} autoplay muted loop playsinline></video>
-	{/if}
 	<canvas bind:this={canvas}></canvas>
 </div>
 
@@ -213,16 +339,10 @@
 		height: 100%;
 		pointer-events: none;
 	}
-	.hero-video {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		opacity: 0.4;
-	}
 	canvas {
 		display: block;
+		position: relative;
+		z-index: 1;
 		width: 100%;
 		height: 100%;
 	}
