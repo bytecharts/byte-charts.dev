@@ -119,6 +119,40 @@
 	.card-custom {
 		@apply z-50 border border-base-300 bg-base-100/80 p-5;
 	}
+
+	/*  Hover Lines Square - Small */
+	.hvr-lines-square-sm {
+		display: inline-block;
+		position: relative;
+		overflow: hidden;
+		padding: 2px 0;
+	}
+
+	.hvr-lines-square-sm::after {
+		content: '';
+		position: absolute;
+		left: 51%;
+		right: 51%;
+		height: 3px;
+		background-image: repeating-linear-gradient(
+			to right,
+			var(--color-base-content) 0 3px,
+			transparent 3px 5px
+		);
+		transition:
+			left 0.3s ease-out,
+			right 0.3s ease-out;
+	}
+	.hvr-lines-square-sm::after {
+		bottom: 0;
+	}
+
+	.hvr-lines-square-sm:hover::after {
+		left: 0;
+		right: 0;
+	}
+
+	/*  Hover Lines Square - Default */
 	.hvr-lines-square {
 		display: inline-block;
 		position: relative;
@@ -171,5 +205,33 @@
 	}
 	.about-page-hack {
 		content-visibility: auto;
+	}
+
+	/* Badge hover/focus: must live in utilities layer.
+	 * DaisyUI 5 puts .badge in @layer utilities, which beats
+	 * @layer components regardless of specificity. */
+	.badge {
+		transition:
+			transform 0.2s ease-out,
+			background-color 0.2s ease-out,
+			color 0.2s ease-out,
+			border-color 0.2s ease-out;
+	}
+
+	.badge:is(
+		:hover,
+		:focus-visible,
+		:active,
+		.badge-active,
+		[aria-pressed='true'],
+		[aria-current='true']
+	) {
+		--badge-bg: var(--color-base-content);
+		--badge-fg: var(--color-base-100);
+		background-color: var(--color-base-content);
+		color: var(--color-base-100);
+		border-color: var(--color-base-content);
+		transform: scale(1.075);
+		outline: none;
 	}
 }

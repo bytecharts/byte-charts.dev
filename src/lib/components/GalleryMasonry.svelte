@@ -56,7 +56,8 @@
 			title: 'Chasing Love in Hollywood Rom-coms',
 			width: 1080,
 			height: 1920,
-			isVideo: true
+			isVideo: true,
+			kind: 'video'
 		},
 		{
 			src: '/videos/OBEs.mp4',
@@ -64,7 +65,8 @@
 			title: 'Out of Body Experiences and their stories',
 			width: 1080,
 			height: 1920,
-			isVideo: true
+			isVideo: true,
+			kind: 'video'
 		},
 		{
 			src: '/videos/Manta_Rays_H.mp4',
@@ -72,7 +74,8 @@
 			title: 'Manta Rays Observations off the coast of Australia',
 			width: 1440,
 			height: 2560,
-			isVideo: true
+			isVideo: true,
+			kind: 'video'
 		},
 		{
 			src: '/videos/IPL_Team_Valuations.mp4',
@@ -80,11 +83,27 @@
 			title: 'IPL Team Valuations',
 			width: 1280,
 			height: 720,
-			isVideo: true
+			isVideo: true,
+			kind: 'video'
 		}
 	];
 
 	let galleryItems = $state(videoItems);
+
+	let activeFilter = $state('all');
+
+	const filters = [
+		{ id: 'all', label: 'All' },
+		{ id: 'charts', label: 'Charts' },
+		{ id: 'video', label: 'Video' },
+		{ id: 'interactive', label: 'Interactive' }
+	];
+
+	let filteredItems = $derived(
+		activeFilter === 'all'
+			? galleryItems
+			: galleryItems.filter((item) => item.kind === activeFilter)
+	);
 
 	let lightbox;
 
@@ -112,7 +131,8 @@
 						thumbHeight: Math.round((600 * height) / width),
 						title: '#' + toTitle(file),
 						width,
-						height
+						height,
+						kind: 'charts'
 					};
 				});
 
@@ -146,7 +166,7 @@
 <section class="px-6 py-16">
 	<div class="mx-auto max-w-6xl">
 		<div
-			class="card-custom relative mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
+			class="card-custom relative mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
 		>
 			<div>
 				<h1 class="text-4xl font-black tracking-wide sm:text-5xl">Visual Stories</h1>
@@ -158,63 +178,86 @@
 			</div>
 		</div>
 
-		<div id="gallery" class="columns-1 gap-6 sm:columns-2 lg:columns-3">
-			{#each galleryItems as item (item.src)}
-				{#if item.isVideo}
-					<!-- Videos handled by PhotoSwipe via photoswipe-video-plugin -->
-					<a
-						href={resolve(item.src)}
-						data-pswp-type="video"
-						data-pswp-video-src={item.src}
-						data-pswp-width={item.width}
-						data-pswp-height={item.height}
-						aria-label={item.title}
-						class="gallery-card group relative mb-6 block w-full break-inside-avoid overflow-hidden border border-base-300 bg-base-100/80"
-					>
-						<img
-							src={item.poster}
-							alt={item.title}
-							width={item.width}
-							height={item.height}
-							loading="lazy"
-							decoding="async"
-							class="gallery-image block w-full"
-						/>
-
-						<div class="gallery-video-overlay">
-							<svg viewBox="0 0 24 24" aria-hidden="true" class="gallery-video-icon">
-								<path
-									fill="currentColor"
-									d="M8 5.14v13.72a1 1 0 0 0 1.52.86l10.29-6.86a1 1 0 0 0 0-1.72L9.52 4.28A1 1 0 0 0 8 5.14z"
-								/>
-							</svg>
-
-							<span class="gallery-video-label">Video</span>
-						</div>
-					</a>
-				{:else}
-					<!-- Images handled by PhotoSwipe -->
-					<a
-						href={resolve(item.src)}
-						data-pswp-width={item.width}
-						data-pswp-height={item.height}
-						class="gallery-card group relative mb-6 block w-full break-inside-avoid overflow-hidden border border-base-300 bg-base-100/80"
-					>
-						<picture class="block">
-							<source srcset={item.thumbAvif} type="image/avif" />
-							<img
-								src={item.thumb}
-								alt={item.title}
-								width={item.thumbWidth}
-								height={item.thumbHeight}
-								loading="lazy"
-								decoding="async"
-								class="gallery-image block w-full"
-							/>
-						</picture>
-					</a>
-				{/if}
+		<div
+			class="about-page-hack mb-10 flex flex-wrap gap-2 bg-base-100 p-4"
+			role="group"
+			aria-label="Filter gallery"
+		>
+			{#each filters as filter}
+				<button
+					type="button"
+					onclick={() => (activeFilter = filter.id)}
+					aria-pressed={activeFilter === filter.id}
+					class={`badge cursor-pointer badge-outline ${activeFilter === filter.id ? 'badge-neutral' : ''}`}
+				>
+					{filter.label}
+				</button>
 			{/each}
+		</div>
+
+		<div class="about-page-hack grid min-h-[50vh] items-center bg-base-100 p-4">
+			{#if filteredItems.length === 0}
+				<p class="text-center text-base-content/60">No items in this category yet.</p>
+			{:else}
+				<div id="gallery" class="columns-1 gap-6 sm:columns-2 lg:columns-3">
+					{#each filteredItems as item (item.src)}
+						{#if item.isVideo}
+							<!-- Videos handled by PhotoSwipe via photoswipe-video-plugin -->
+							<a
+								href={resolve(item.src)}
+								data-pswp-type="video"
+								data-pswp-video-src={item.src}
+								data-pswp-width={item.width}
+								data-pswp-height={item.height}
+								aria-label={item.title}
+								class="gallery-card group relative mb-6 block w-full break-inside-avoid overflow-hidden border border-base-300 bg-base-100/80"
+							>
+								<img
+									src={item.poster}
+									alt={item.title}
+									width={item.width}
+									height={item.height}
+									loading="lazy"
+									decoding="async"
+									class="gallery-image block w-full"
+								/>
+
+								<div class="gallery-video-overlay">
+									<svg viewBox="0 0 24 24" aria-hidden="true" class="gallery-video-icon">
+										<path
+											fill="currentColor"
+											d="M8 5.14v13.72a1 1 0 0 0 1.52.86l10.29-6.86a1 1 0 0 0 0-1.72L9.52 4.28A1 1 0 0 0 8 5.14z"
+										/>
+									</svg>
+
+									<span class="gallery-video-label">Video</span>
+								</div>
+							</a>
+						{:else}
+							<!-- Images handled by PhotoSwipe -->
+							<a
+								href={resolve(item.src)}
+								data-pswp-width={item.width}
+								data-pswp-height={item.height}
+								class="gallery-card group relative mb-6 block w-full break-inside-avoid overflow-hidden border border-base-300 bg-base-100/80"
+							>
+								<picture class="block">
+									<source srcset={item.thumbAvif} type="image/avif" />
+									<img
+										src={item.thumb}
+										alt={item.title}
+										width={item.thumbWidth}
+										height={item.thumbHeight}
+										loading="lazy"
+										decoding="async"
+										class="gallery-image block w-full"
+									/>
+								</picture>
+							</a>
+						{/if}
+					{/each}
+				</div>
+			{/if}
 		</div>
 	</div>
 </section>
