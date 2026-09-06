@@ -33,7 +33,7 @@
 	{@html `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'BlogPosting', headline: data.meta?.title ?? 'TODO', datePublished: data.meta?.date, description: data.meta?.excerpt ?? 'TODO', image: data.meta?.cover ?? 'TODO', url: canonical, author: { '@type': 'Person', name: 'TODO: Author name' }, publisher: { '@type': 'Organization', name: 'Byte Charts', logo: { '@type': 'ImageObject', url: 'TODO: logo URL' } } })}</script>`}
 </svelte:head>
 
-<main class="bg-base-100">
+<main class="about-page-hack bg-base-100">
 	<section class="px-6 py-16">
 		<div class="mx-auto max-w-3xl">
 			<nav class="mb-8 text-sm">
