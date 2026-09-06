@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev --port 8787",
-		"build": "vite build",
+		"generate-thumbnails": "node scripts/generate-thumbnails.js",
+		"build": "npm run generate-thumbnails && vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"lint": "prettier --check . && eslint .",
@@ -34,6 +35,7 @@
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
+		"sharp": "^0.35.4",
 		"svelte": "^5.55.2",
 		"tailwindcss": "4.2.4",
 		"vite": "^8.0.7",
@@ -42,6 +44,8 @@
 	},
 	"dependencies": {
 		"@masonry-grid/svelte": "^1.1.1",
-		"lightgallery": "^2.9.0"
+		"lightgallery": "^2.9.0",
+		"photoswipe": "^5.4.4",
+		"photoswipe-video-plugin": "^1.0.2"
 	}
 }
