@@ -14,12 +14,17 @@
 	// Static chart thumbnails + video, revealed with a pixelation effect behind the canvas grid.
 	// duration is per-slide milliseconds. Videos default to their full runtime.
 	const slides = [
-		{ src: '/videos/Climate_Stripes_SFX.mp4', type: 'video' },
-		{ src: '/images/charts/gallery/thumbs/static__0.webp', type: 'image', duration: 5500 },
-		{ src: '/images/charts/gallery/thumbs/static__23.webp', type: 'image', duration: 5500 },
-		{ src: '/images/charts/gallery/thumbs/static__3.webp', type: 'image', duration: 5500 },
+		{ src: '/videos/Climate_Stripes_Square.mp4', type: 'video' },
+		{ src: '/images/charts/gallery/thumbs/static__2.webp', type: 'image', duration: 5500 },
+		{ src: '/images/charts/gallery/thumbs/static__3.webp', type: 'image', duration: 4500 },
+		{ src: '/images/charts/gallery/thumbs/static__5.webp', type: 'image', duration: 5500 },
 		{ src: '/images/charts/gallery/thumbs/static__8.webp', type: 'image', duration: 5500 },
-		{ src: '/images/charts/gallery/thumbs/static__1.webp', type: 'image', duration: 5500 }
+		{ src: '/images/charts/gallery/thumbs/static__9.webp', type: 'image', duration: 3500 },
+		{ src: '/images/charts/gallery/thumbs/static__28.webp', type: 'image', duration: 5500 },
+		{ src: '/images/charts/gallery/thumbs/static__33.webp', type: 'image', duration: 4500 },
+		{ src: '/images/charts/gallery/thumbs/static__34.webp', type: 'image', duration: 5500 },
+		{ src: '/images/charts/gallery/thumbs/static__35.webp', type: 'image', duration: 4500 },
+		{ src: '/images/charts/gallery/thumbs/static__36.webp', type: 'image', duration: 5500 }
 	];
 
 	const SLIDE_INTERVAL = 5500;
@@ -229,14 +234,14 @@
 				dh,
 				pixelProgress < 1,
 				pixelProgress,
-				'grayscale(1) blur(2px)'
+				'grayscale(1) blur(1px)'
 			);
 
 			// Slow color fade once the image is in focus.
 			if (colorProgress > 0) {
 				ctx.save();
 				ctx.globalAlpha = easeOutCubic(colorProgress);
-				blit(source, dims.w, dims.h, dx, dy, dw, dh, false, 1, 'blur(2px)');
+				blit(source, dims.w, dims.h, dx, dy, dw, dh, false, 1, 'blur(1px)');
 				ctx.restore();
 			}
 		}

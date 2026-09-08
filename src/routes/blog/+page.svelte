@@ -33,7 +33,7 @@
 </script>
 
 <svelte:head>
-	<title>TODO: Page Title</title>
+	<title>Blog</title>
 	<meta name="description" content="TODO: Meta description" />
 	<link rel="canonical" href={canonical} />
 	<meta property="og:title" content="TODO: OG title" />

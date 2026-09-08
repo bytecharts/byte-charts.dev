@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>TODO: Page Title</title>
+	<title>About</title>
 	<meta name="description" content="TODO: Meta description" />
 	<link rel="canonical" href="https://byte-charts.dev/about" />
 	<meta property="og:title" content="TODO: OG title" />

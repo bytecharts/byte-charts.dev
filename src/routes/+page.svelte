@@ -6,6 +6,7 @@
 	<title>Byte Charts - Visual Stories</title>
 	<meta name="description" content="Byte Charts is a project focussing on visual stories" />
 	<link rel="canonical" href="https://byte-charts.dev/" />
+
 	<meta property="og:title" content="Byte Charts" />
 	<meta property="og:description" content="Byte Charts is a project focussing on visual stories" />
 	<meta property="og:url" content="https://byte-charts.dev/" />
@@ -22,9 +23,9 @@
 </svelte:head>
 
 <main>
-	<div class="hero relative min-h-screen bg-base-100">
+	<div class="relative hero min-h-screen bg-base-100">
 		<Hero />
-		<div class=" hero-content relative z-10 mb-50 bg-base-200/50 p-10 text-center">
+		<div class=" relative hero-content z-10 mb-50 bg-base-200/50 p-10 text-center">
 			<div class="max-w-md">
 				<div class="text-center text-4xl md:text-5xl">
 					<h1 class="text-center font-black tracking-normal">Work in Progress</h1>
