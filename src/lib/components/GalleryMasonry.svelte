@@ -99,8 +99,7 @@
 	const filters = [
 		{ id: 'all', label: 'All' },
 		{ id: 'charts', label: 'Charts' },
-		{ id: 'video', label: 'Video' },
-		{ id: 'interactive', label: 'Interactive' }
+		{ id: 'video', label: 'Video' }
 	];
 
 	let filteredItems = $derived(

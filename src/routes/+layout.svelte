@@ -17,7 +17,10 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Byte Charts - Blog on data visualization</title>
-	<meta name="description" content="TODO: Global fallback meta description" />
+	<meta
+		name="description"
+		content="Byte Charts turns complex data into visual stories, motion graphics, and interactive explainers."
+	/>
 	<meta property="og:site_name" content="Byte Charts" />
 	<meta property="og:locale" content="en_US" />
 </svelte:head>

@@ -1,11 +1,14 @@
 <script>
-	import BGPattern from '$lib/components/BGPattern.svelte';
+	import Seo from '$lib/components/Seo.svelte';
+	import { getStaticSeo } from '$lib/seo.js';
+
 	const { data } = $props();
 
 	const canonicalBase = 'https://byte-charts.dev/blog';
 	const canonical = data?.selectedTag
 		? `${canonicalBase}?tag=${encodeURIComponent(data.selectedTag)}`
 		: canonicalBase;
+	const seo = { ...getStaticSeo('blog'), url: canonical, noindex: Boolean(data?.selectedTag) };
 
 	const formatter = new Intl.DateTimeFormat('en-US', {
 		year: 'numeric',
@@ -32,24 +35,7 @@
 		: data.posts;
 </script>
 
-<svelte:head>
-	<title>Blog</title>
-	<meta name="description" content="TODO: Meta description" />
-	<link rel="canonical" href={canonical} />
-	<meta property="og:title" content="TODO: OG title" />
-	<meta property="og:description" content="TODO: OG description" />
-	<meta property="og:url" content={canonical} />
-	<meta property="og:type" content="website" />
-	<meta property="og:image" content="TODO: OG image URL" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="TODO: Twitter title" />
-	<meta name="twitter:description" content="TODO: Twitter description" />
-	<meta name="twitter:image" content="TODO: Twitter image URL" />
-	{#if data?.selectedTag}
-		<meta name="robots" content="noindex, follow" />
-	{/if}
-	{@html `<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Blog","url":"https://byte-charts.dev/blog","description":"TODO: Description"}</script>`}
-</svelte:head>
+<Seo {...seo} />
 
 <main class="min-h-screen bg-base-100">
 	<section class="px-6 py-16">

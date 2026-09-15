@@ -117,7 +117,7 @@
 
 @layer components {
 	.card-custom {
-		@apply z-50 border border-base-300 bg-base-100/80 p-5;
+		@apply z-50 border border-base-300 bg-base-100 p-5;
 	}
 
 	/*  Hover Lines Square - Small */

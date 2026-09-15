@@ -1,10 +1,10 @@
 <footer
-	class="relative z-50 footer footer-center footer-horizontal rounded bg-base-100 p-4 text-base-content"
+	class="footer-center relative z-50 footer footer-horizontal rounded bg-base-100 p-4 text-base-content"
 >
 	<nav>
 		<div class="grid grid-flow-col gap-4">
 			<!--Linkedin-->
-			<a href="https://linkedin.com/company/byte-charts" target="_blank">
+			<a href="https://linkedin.com/company/byte-charts" target="_blank" rel="noopener noreferrer">
 				<svg
 					class="fill-base-content"
 					role="img"
@@ -34,7 +34,7 @@
 				</svg>
 			</a>
 			<!--Twitter/X-->
-			<a href="https://x.com/bytecharts1" target="_blank">
+			<a href="https://x.com/bytecharts1" target="_blank" rel="noopener noreferrer">
 				<svg
 					role="img"
 					class="fill-base-content"
@@ -49,7 +49,7 @@
 				</svg>
 			</a>
 			<!--BlueSky-->
-			<a href="https://bsky.app/profile/byte-charts.dev" target="_blank">
+			<a href="https://bsky.app/profile/byte-charts.dev" target="_blank" rel="noopener noreferrer">
 				<svg
 					role="img"
 					class="fill-base-content"
@@ -65,7 +65,7 @@
 				</svg>
 			</a>
 			<!--Github-->
-			<a href="https://github.com/bytecharts" target="_blank">
+			<a href="https://github.com/bytecharts" target="_blank" rel="noopener noreferrer">
 				<svg
 					role="img"
 					class="fill-base-content"
@@ -82,7 +82,7 @@
 			</a>
 
 			<!--Instagram-->
-			<a href="https://www.instagram.com/byte_charts/" target="_blank">
+			<a href="https://www.instagram.com/byte_charts/" target="_blank" rel="noopener noreferrer">
 				<svg
 					role="img"
 					class="fill-base-content"

@@ -76,6 +76,9 @@
 							href="/about">About</a
 						>
 					</li>
+					<li>
+						<a class="brand-link hvr-lines-square tracking-normal" href="/contact">Contact</a>
+					</li>
 
 					<!--Theme Toggler-->
 					<li class="m-auto">
@@ -136,6 +139,7 @@
 				</li>
 				<li><a class="brand-link hvr-lines-square tracking-normal" href="/blog"> Blog </a></li>
 				<li><a class="brand-link hvr-lines-square tracking-normal" href="/about">About</a></li>
+				<li><a class="brand-link hvr-lines-square tracking-normal" href="/contact">Contact</a></li>
 
 				<!-- Theme Toggler -->
 				<li class="m-auto">
