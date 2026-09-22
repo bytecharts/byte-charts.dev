@@ -2,186 +2,416 @@
   {
     "file": "static__0.png",
     "width": 4800,
-    "height": 2700
+    "height": 2700,
+    "thumbWidth": 600,
+    "thumbHeight": 338,
+  "title": "Electoral Bond Funding",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__1.png",
     "width": 4200,
-    "height": 3600
+    "height": 3600,
+    "thumbWidth": 600,
+    "thumbHeight": 514,
+   "title": "Drugs & Death Rates",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__10.png",
     "width": 2700,
-    "height": 4800
+    "height": 4800,
+    "thumbWidth": 600,
+    "thumbHeight": 1067,
+    "title": "Wealth Accumulation",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__11.png",
     "width": 4480,
-    "height": 3840
+    "height": 3840,
+    "thumbWidth": 600,
+    "thumbHeight": 514,
+     "title": "Twin Cities",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["tidytuesday"]
   },
   {
     "file": "static__12.png",
     "width": 4800,
-    "height": 6600
+    "height": 6600,
+    "thumbWidth": 600,
+    "thumbHeight": 825,
+      "title": "India: Violence Against Women",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__13.png",
     "width": 3200,
-    "height": 4000
+    "height": 4000,
+    "thumbWidth": 600,
+    "thumbHeight": 750,
+       "title": "USA: Electricity Consumption DEM",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__14.png",
     "width": 4760,
-    "height": 5440
+    "height": 5440,
+    "thumbWidth": 600,
+    "thumbHeight": 686,
+        "title": "China: Global Production",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__15.png",
     "width": 4800,
-    "height": 6600
+    "height": 6600,
+    "thumbWidth": 600,
+    "thumbHeight": 825,
+         "title": "Violence Against Women (Countries #1)",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__16.png",
     "width": 4800,
-    "height": 6600
+    "height": 6600,
+    "thumbWidth": 600,
+    "thumbHeight": 825,
+          "title": "Violence Against Women (Countries #2)",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
+
   },
   {
     "file": "static__17.png",
     "width": 4760,
-    "height": 5440
+    "height": 5440,
+    "thumbWidth": 600,
+    "thumbHeight": 686,
+         "title": "China: Global Production (#2)",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
+
   },
   {
     "file": "static__18.png",
     "width": 4760,
-    "height": 5440
+    "height": 5440,
+    "thumbWidth": 600,
+    "thumbHeight": 686,
+          "title": "Maternity Leave across Europe",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["tidytuesday"]
   },
   {
     "file": "static__19.png",
     "width": 4320,
-    "height": 5400
+    "height": 5400,
+    "thumbWidth": 600,
+    "thumbHeight": 750,
+           "title": "Female Elephants Losing Tusk",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__2.png",
     "width": 909,
-    "height": 1020
+    "height": 1020,
+    "thumbWidth": 600,
+    "thumbHeight": 673,
+  "title": "Fabric Production",
+  "interactive": "True",
+  "url": "https://bytecharts.github.io/30DayChartChallenge/2026/22_new_tool/",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__20.png",
     "width": 2160,
-    "height": 3840
+    "height": 3840,
+    "thumbWidth": 600,
+    "thumbHeight": 1067,
+   "title": "India: Electricity Consumption DEM",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__21.webp",
     "width": 1077,
-    "height": 972
+    "height": 972,
+    "thumbWidth": 600,
+    "thumbHeight": 542,
+    "title": "IPL Team Valuations",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__22.webp",
     "width": 3199,
-    "height": 4000
+    "height": 4000,
+    "thumbWidth": 600,
+    "thumbHeight": 750,
+     "title": "Lesotho Wool",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["tidytuesday"]
   },
   {
     "file": "static__23.png",
     "width": 3840,
-    "height": 3200
+    "height": 3200,
+    "thumbWidth": 600,
+    "thumbHeight": 500,
+      "title": "Pakistan: Palindrome Places",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["dataviz"]
   },
   {
     "file": "static__24.webp",
     "width": 3200,
-    "height": 4000
+    "height": 4000,
+    "thumbWidth": 600,
+    "thumbHeight": 750,
+       "title": "India: Paper Leaks",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["dataviz"]
   },
   {
     "file": "static__25.webp",
     "width": 1000,
-    "height": 833
+    "height": 833,
+    "thumbWidth": 600,
+    "thumbHeight": 500,
+        "title": "USA: State Electricity Demand",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__26.webp",
     "width": 1000,
-    "height": 833
+    "height": 833,
+    "thumbWidth": 600,
+    "thumbHeight": 500,
+         "title": "USA: Tornado Start Times",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__27.webp",
     "width": 1000,
-    "height": 941
+    "height": 941,
+    "thumbWidth": 600,
+    "thumbHeight": 565,
+          "title": "Rainworld Ecosystem",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__28.png",
     "width": 4200,
-    "height": 3300
+    "height": 3300,
+    "thumbWidth": 600,
+    "thumbHeight": 471,
+           "title": "Justification of Wife-Beating",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__29.png",
     "width": 4760,
-    "height": 5440
+    "height": 5440,
+    "thumbWidth": 600,
+    "thumbHeight": 686,
+            "title": "China: Global Production(#3)",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__3.png",
     "width": 4620,
-    "height": 3960
+    "height": 3960,
+    "thumbWidth": 600,
+    "thumbHeight": 514,
+             "title": "SCMP Style: Urbanization of China",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__30.png",
     "width": 4480,
-    "height": 3840
+    "height": 3840,
+    "thumbWidth": 600,
+    "thumbHeight": 514,
+              "title": "Japan's Momentum",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__31.png",
     "width": 2304,
-    "height": 4096
+    "height": 4096,
+    "thumbWidth": 600,
+    "thumbHeight": 1067,
+               "title": "Bollywood Remakes (Surbhi Bhatia)",
+  "subtitle": "Data from Surbhi Bhatia",
+  "year": "2026",
+  "tags": ["dataviz"]
   },
   {
     "file": "static__32.png",
     "width": 3840,
-    "height": 2880
+    "height": 2880,
+    "thumbWidth": 600,
+    "thumbHeight": 450,
+                "title": "Crossref Participation",
+  "subtitle": "",
+  "year": "2026",
+  "interactive": "True",
+  "url":"https://bytecharts.github.io/TidyTuesday/2026/week_20/crossref_quadrant_d3.html",
+  "tags": ["tidytuesday"]
   },
   {
     "file": "static__33.png",
     "width": 3450,
-    "height": 2250
+    "height": 2250,
+    "thumbWidth": 600,
+    "thumbHeight": 391,
+                 "title": "Global Access to Electricity",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["30daychartchallenge"]
   },
   {
     "file": "static__34.png",
     "width": 2304,
-    "height": 4096
+    "height": 4096,
+    "thumbWidth": 600,
+    "thumbHeight": 1067,
+                  "title": "Smoking: Men vs. Women",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["dataviz"]
   },
   {
     "file": "static__35.png",
     "width": 3840,
-    "height": 3200
+    "height": 3200,
+    "thumbWidth": 600,
+    "thumbHeight": 500,
+                   "title": "Electricity Grid Loss",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["tidytuesday"]
   },
   {
     "file": "static__36.png",
     "width": 2160,
-    "height": 3840
+    "height": 3840,
+    "thumbWidth": 600,
+    "thumbHeight": 1067,
+                    "title": "India: Electricity Consumption DEM",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["dataviz"]
   },
   {
     "file": "static__4.png",
     "width": 2389,
-    "height": 4096
+    "height": 4096,
+    "thumbWidth": 600,
+    "thumbHeight": 1029,
+                     "title": "How Penguins differ?",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["tidytuesday"]
   },
   {
     "file": "static__5.png",
     "width": 3277,
-    "height": 4096
+    "height": 4096,
+    "thumbWidth": 600,
+    "thumbHeight": 750,
+                      "title": "Ireland's Deadliest Day at Sea",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["tidytuesday"]
   },
   {
     "file": "static__6.webp",
     "width": 2250,
-    "height": 4000
+    "height": 4000,
+    "thumbWidth": 600,
+    "thumbHeight": 1067,
+
+                  "title": "Smoking: Men vs. Women",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["dataviz"]
   },
   {
     "file": "static__7.png",
     "width": 4608,
-    "height": 8192
+    "height": 8192,
+    "thumbWidth": 600,
+    "thumbHeight": 1067,
+                   "title": "Cigarettes & China",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["dataviz"]
   },
   {
     "file": "static__8.png",
     "width": 5120,
-    "height": 4480
+    "height": 4480,
+    "thumbWidth": 600,
+    "thumbHeight": 525,
+                    "title": "Succession Swearing",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["mondayremakes"]
   },
   {
     "file": "static__9.png",
     "width": 3840,
-    "height": 3200
+    "height": 3200,
+    "thumbWidth": 600,
+    "thumbHeight": 500,
+
+                   "title": "Electricity Grid Loss",
+  "subtitle": "",
+  "year": "2026",
+  "tags": ["tidytuesday"]
   }
 ]

@@ -1,6 +1,5 @@
 import { loadPosts } from '$lib/blog';
-
-const BASE_URL = 'https://byte-charts.dev';
+import { SITE_URL } from '$lib/seo';
 
 const staticPages = [
 	{ path: '/', changefreq: 'weekly', priority: '1.0' },
@@ -16,15 +15,17 @@ export async function GET() {
 	const posts = await loadPosts();
 
 	const postEntries = posts.map((post) => {
-		const lastmod = post.meta?.date
-			? new Date(post.meta.date).toISOString()
-			: new Date().toISOString();
-		return `\t<url>\n\t\t<loc>${BASE_URL}/blog/${post.slug}</loc>\n\t\t<lastmod>${lastmod}</lastmod>\n\t\t<changefreq>monthly</changefreq>\n\t\t<priority>0.7</priority>\n\t</url>`;
+		const parsed = post.meta?.date ? new Date(post.meta.date) : undefined;
+		const lastmod =
+			parsed && !Number.isNaN(parsed.getTime())
+				? `\n\t\t<lastmod>${parsed.toISOString()}</lastmod>`
+				: '';
+		return `\t<url>\n\t\t<loc>${SITE_URL}/blog/${encodeURIComponent(post.slug)}</loc>${lastmod}\n\t\t<changefreq>monthly</changefreq>\n\t\t<priority>0.7</priority>\n\t</url>`;
 	});
 
 	const staticEntries = staticPages.map(
 		(page) =>
-			`\t<url>\n\t\t<loc>${BASE_URL}${page.path}</loc>\n\t\t<changefreq>${page.changefreq}</changefreq>\n\t\t<priority>${page.priority}</priority>\n\t</url>`
+			`\t<url>\n\t\t<loc>${SITE_URL}${page.path}</loc>\n\t\t<changefreq>${page.changefreq}</changefreq>\n\t\t<priority>${page.priority}</priority>\n\t</url>`
 	);
 
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>

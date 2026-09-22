@@ -1,10 +1,15 @@
 <footer
 	class="footer-center relative z-50 footer footer-horizontal rounded bg-base-100 p-4 text-base-content"
 >
-	<nav>
+	<nav aria-label="Social links">
 		<div class="grid grid-flow-col gap-4">
 			<!--Linkedin-->
-			<a href="https://linkedin.com/company/byte-charts" target="_blank" rel="noopener noreferrer">
+			<a
+				href="https://linkedin.com/company/byte-charts"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="Byte Charts on LinkedIn"
+			>
 				<svg
 					class="fill-base-content"
 					role="img"
@@ -16,6 +21,7 @@
 					viewBox="-143 145 512 512"
 					xml:space="preserve"
 				>
+					<title>LinkedIn</title>
 					<g>
 						<path
 							d="M329,145h-432c-22.1,0-40,17.9-40,40v432c0,22.1,17.9,40,40,40h432c22.1,0,40-17.9,40-40V185C369,162.9,351.1,145,329,145z
@@ -34,7 +40,12 @@
 				</svg>
 			</a>
 			<!--Twitter/X-->
-			<a href="https://x.com/bytecharts1" target="_blank" rel="noopener noreferrer">
+			<a
+				href="https://x.com/bytecharts1"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="Byte Charts on X"
+			>
 				<svg
 					role="img"
 					class="fill-base-content"
@@ -43,6 +54,7 @@
 					height="24"
 					viewBox="0 0 24 24"
 				>
+					<title>X</title>
 					<path
 						d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"
 					/>

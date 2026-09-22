@@ -40,6 +40,10 @@
 
 		if (!canvas || !container) return;
 
+		// The inline script in app.html sets data-theme before first paint,
+		// so read it instead of waiting for the theme store to catch up.
+		isDark = document.documentElement.getAttribute('data-theme') === 'bc-dark';
+
 		ctx = canvas.getContext('2d');
 
 		function setSize() {
@@ -91,6 +95,11 @@
 		// GRID
 		// ============================================
 
+		// Overlay canvas is created before drawGrid so the context exists
+		// when the grid is first rendered.
+		const overlay = document.createElement('canvas');
+		const octx = overlay.getContext('2d');
+
 		function drawGrid() {
 			const t = theme();
 
@@ -112,9 +121,6 @@
 		// ============================================
 		// OVERLAY (grid, pre-rendered once)
 		// ============================================
-
-		const overlay = document.createElement('canvas');
-		const octx = overlay.getContext('2d');
 
 		function renderOverlay() {
 			overlay.width = width;
@@ -332,7 +338,7 @@
 	});
 </script>
 
-<div class="hero-canvas" bind:this={container}>
+<div class="hero-canvas" aria-hidden="true" bind:this={container}>
 	<canvas bind:this={canvas}></canvas>
 </div>
 

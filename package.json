@@ -3,16 +3,21 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"packageManager": "pnpm@11.22.0",
+	"engines": {
+		"node": ">=20"
+	},
 	"scripts": {
 		"dev": "vite dev --port 8787",
 		"generate-thumbnails": "node scripts/generate-thumbnails.js",
-		"build": "npm run generate-thumbnails && vite build",
+		"thumbs:check": "node scripts/generate-thumbnails.js --check",
+		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
+		"test": "vitest run"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^2.0.4",
@@ -44,7 +49,6 @@
 	},
 	"dependencies": {
 		"@masonry-grid/svelte": "^1.1.1",
-		"lightgallery": "^2.9.0",
 		"photoswipe": "^5.4.4",
 		"photoswipe-video-plugin": "^1.0.2"
 	}

@@ -1,0 +1,42 @@
+[
+	{
+		"src": "/videos/Chasing_Love.mp4",
+		"poster": "/videos/Chasing_Love.jpg",
+		"title": "Chasing Love in Hollywood Rom-coms",
+		"subtitle": "",
+		"year": "2026",
+		"tags": ["mondayremake"],
+		"width": 1080,
+		"height": 1920
+	},
+	{
+		"src": "/videos/OBEs.mp4",
+		"poster": "/videos/OBEs.jpg",
+		"title": "Out of Body Experiences and their stories",
+		"subtitle": "",
+		"year": "2026",
+		"tags": ["tidytuesday"],
+		"width": 1080,
+		"height": 1920
+	},
+	{
+		"src": "/videos/Manta_Rays_H.mp4",
+		"poster": "/videos/Manta_Rays.jpg",
+		"title": "Manta Rays Observations off the coast of Australia",
+		"subtitle": "",
+		"year": "2026",
+		"tags": ["tidytuesday"],
+		"width": 1440,
+		"height": 2560
+	},
+	{
+		"src": "/videos/IPL_Team_Valuations.mp4",
+		"poster": "/videos/IPL_Team_Valuations.jpg",
+		"title": "IPL Team Valuations",
+		"subtitle": "",
+		"year": "2026",
+		"tags": ["mondayremakes"],
+		"width": 1280,
+		"height": 720
+	}
+]

@@ -78,8 +78,14 @@ export const getStaticSeo = (key) => {
 		description: page.description,
 		url,
 		image: absoluteUrl(page.image),
-		jsonLd: key === 'home' ? [organizationJsonLd, jsonLd] : jsonLd
+		jsonLd: key === 'home' ? [organizationJsonLd, jsonLd] : [jsonLd]
 	};
+};
+
+const toIsoDate = (value) => {
+	if (!value) return undefined;
+	const parsed = new Date(value);
+	return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString();
 };
 
 export const getBlogPostSeo = (meta, slug) => {
@@ -87,6 +93,7 @@ export const getBlogPostSeo = (meta, slug) => {
 	const description = meta?.excerpt ?? 'A note from Byte Charts.';
 	const url = absoluteUrl(`/blog/${slug}`);
 	const image = absoluteUrl(meta?.cover);
+	const publishedTime = toIsoDate(meta?.date);
 
 	return {
 		title,
@@ -94,12 +101,12 @@ export const getBlogPostSeo = (meta, slug) => {
 		url,
 		image,
 		type: 'article',
-		publishedTime: meta?.date,
+		publishedTime,
 		jsonLd: {
 			'@context': 'https://schema.org',
 			'@type': 'BlogPosting',
 			headline: meta?.title ?? 'Post',
-			datePublished: meta?.date,
+			datePublished: publishedTime,
 			description,
 			image,
 			url,

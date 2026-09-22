@@ -1,10 +1,25 @@
-const normalizeTags = (tags) => {
+export const normalizeTags = (tags) => {
 	if (!tags) return [];
 	const rawList = Array.isArray(tags) ? tags : [tags];
 	return rawList
 		.flatMap((tag) => String(tag).split(','))
 		.map((tag) => tag.trim())
 		.filter(Boolean);
+};
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric'
+});
+
+// Invalid or missing dates render as '' so callers can hide the date
+// instead of printing a raw unparsed string.
+export const formatDate = (value) => {
+	if (!value) return '';
+	const parsed = new Date(value);
+	if (Number.isNaN(parsed.getTime())) return '';
+	return dateFormatter.format(parsed);
 };
 
 const toTimestamp = (value) => {

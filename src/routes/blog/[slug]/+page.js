@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import { normalizeTags } from '$lib/blog';
 
 export const load = async ({ params }) => {
 	const modules = import.meta.glob('/src/content/blog/*.{md,svx}');
@@ -11,5 +12,10 @@ export const load = async ({ params }) => {
 	}
 
 	const post = await match[1]();
-	return { slug: params.slug, meta: post.metadata ?? {}, content: post.default };
+	const meta = post.metadata ?? {};
+	return {
+		slug: params.slug,
+		meta: { ...meta, tags: normalizeTags(meta.tags) },
+		content: post.default
+	};
 };

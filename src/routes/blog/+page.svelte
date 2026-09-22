@@ -1,34 +1,23 @@
 <script>
 	import Seo from '$lib/components/Seo.svelte';
-	import { getStaticSeo } from '$lib/seo.js';
+	import { formatDate } from '$lib/blog.js';
+	import { SITE_URL, getStaticSeo } from '$lib/seo.js';
+	import { resolve } from '$app/paths';
 
 	const { data } = $props();
 
-	const canonicalBase = 'https://byte-charts.dev/blog';
+	const canonicalBase = `${SITE_URL}/blog`;
 	const canonical = data?.selectedTag
 		? `${canonicalBase}?tag=${encodeURIComponent(data.selectedTag)}`
 		: canonicalBase;
 	const seo = { ...getStaticSeo('blog'), url: canonical, noindex: Boolean(data?.selectedTag) };
 
-	const formatter = new Intl.DateTimeFormat('en-US', {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric'
-	});
-
-	const formatDate = (value) => {
-		if (!value) return '';
-		const parsed = new Date(value);
-		if (Number.isNaN(parsed.getTime())) return value;
-		return formatter.format(parsed);
-	};
-
 	const allTags = Array.from(new Set(data.posts.flatMap((post) => post.meta?.tags ?? []))).sort(
 		(a, b) => a.localeCompare(b)
 	);
 
-	const tagParam = data?.selectedTag ?? '';
-	const selectedTag = decodeURIComponent(tagParam);
+	// URLSearchParams.get() already decodes, so use the value as-is (trimmed).
+	const selectedTag = (data?.selectedTag ?? '').trim();
 
 	const filteredPosts = selectedTag
 		? data.posts.filter((post) => (post.meta?.tags ?? []).includes(selectedTag))
@@ -56,21 +45,23 @@
 					<ul class="mt-4 flex flex-wrap gap-2">
 						<li>
 							<a
-								href="/blog"
+								href={resolve('/blog')}
 								aria-current={!selectedTag ? 'true' : undefined}
-								class={`badge badge-outline ${selectedTag ? '' : 'badge-neutral'}`}
+								class={`pressable inline-block px-1 py-0.5 text-sm text-base-content `}
 							>
-								All
+								<span class="hvr-lines-square-sm" class:current-tab={!selectedTag}>All</span>
 							</a>
 						</li>
-						{#each allTags as tag}
+						{#each allTags as tag (tag)}
 							<li>
 								<a
-									href={`/blog?tag=${encodeURIComponent(tag)}`}
+									href={resolve(`/blog?tag=${encodeURIComponent(tag)}`)}
 									aria-current={selectedTag === tag ? 'true' : undefined}
-									class={` badge badge-outline ${selectedTag === tag ? 'badge-neutral' : ''}`}
+									class={`pressable inline-block px-1 py-0.5 text-sm text-base-content `}
 								>
-									{tag}
+									<span class="hvr-lines-square-sm" class:current-tab={selectedTag === tag}>
+										{tag}
+									</span>
 								</a>
 							</li>
 						{/each}
@@ -79,9 +70,12 @@
 
 				<div class="grid gap-6">
 					{#if filteredPosts.length === 0}
-						<p class="text-base-content/60">No posts match this tag.</p>
+						<p class="text-base-content/60">
+							No posts match this tag.
+							<a href={resolve('/blog')} class="link font-semibold link-hover">Show all posts</a>
+						</p>
 					{:else}
-						{#each filteredPosts as post}
+						{#each filteredPosts as post (post.slug)}
 							<article
 								class=" hvr-lines-square relative grid gap-4 border
 								border-base-300 bg-base-100/80 p-6"
@@ -89,15 +83,18 @@
 								{#if post.meta?.cover}
 									<img
 										src={post.meta.cover}
-										alt={post.meta?.title}
+										alt=""
 										loading="lazy"
+										decoding="async"
 										class="h-56 w-full object-cover"
 									/>
 								{/if}
 								<div class="flex flex-col gap-2">
-									<p class="text-xs tracking-[0.2em] text-base-content/50 uppercase">
-										{formatDate(post.meta?.date)}
-									</p>
+									{#if formatDate(post.meta?.date)}
+										<p class="text-xs tracking-[0.2em] text-base-content/50 uppercase">
+											{formatDate(post.meta?.date)}
+										</p>
+									{/if}
 									<h2 class="text-2xl font-bold">
 										{post.meta?.title}
 									</h2>
@@ -106,9 +103,9 @@
 									{/if}
 									{#if post.meta?.tags?.length}
 										<div class="relative z-10 flex flex-wrap gap-2">
-											{#each post.meta.tags as tag}
+											{#each post.meta.tags as tag (tag)}
 												<a
-													href={`/blog?tag=${encodeURIComponent(tag)}`}
+													href={resolve(`/blog?tag=${encodeURIComponent(tag)}`)}
 													class="badge badge-outline"
 												>
 													{tag}
@@ -118,12 +115,10 @@
 									{/if}
 								</div>
 								<a
-									href={`/blog/${post.slug}`}
+									href={resolve(`/blog/${post.slug}`)}
 									class="absolute inset-0"
 									aria-label={`Read: ${post.meta?.title}`}
-								>
-									<span class="sr-only">{post.meta?.title}</span>
-								</a>
+								></a>
 							</article>
 						{/each}
 					{/if}

@@ -12,6 +12,10 @@
 	onMount(() => {
 		if (!canvas || !container) return;
 
+		// The inline script in app.html sets data-theme before first paint,
+		// so read it instead of waiting for the theme store to catch up.
+		isDark = document.documentElement.getAttribute('data-theme') === 'bc-dark';
+
 		ctx = canvas.getContext('2d');
 
 		function setSize() {
@@ -108,47 +112,6 @@
 			}
 		}
 
-		function drawPlane2(scale, rgb) {
-			// Fade out (and thin out) as the plane shrinks toward the vanishing point
-			const alpha = Math.min(1, scale / fadeStartScale);
-			if (alpha <= 0.015) return; // skip near-invisible planes entirely, don't let them pile up
-
-			ctx.strokeStyle = colorWithAlpha(rgb, alpha);
-			ctx.lineWidth = Math.max(0.5, 1.5 * scale);
-
-			// World-space extent so this plane's projection always fills the viewport
-			const halfW = width / 2 / scale;
-			const halfH = height / 2 / scale;
-
-			// Scale line spacing by the same factor as the extent. Without this,
-			// far planes (small scale) get a huge extent but the same fine spacing,
-			// so the number of lines drawn explodes as scale shrinks. Scaling
-			// spacing too keeps line COUNT roughly constant across all planes,
-			// which is also what real perspective grids look like: distant grid
-			// cells cover more world-space per cell.
-			const planeSpacing = spacing / scale;
-
-			// Horizontal lines
-			for (let y = -halfH; y <= halfH; y += planeSpacing) {
-				const a = project(-halfW, y, scale);
-				const b = project(halfW, y, scale);
-				ctx.beginPath();
-				ctx.moveTo(a.x, a.y);
-				ctx.lineTo(b.x, b.y);
-				ctx.stroke();
-			}
-
-			// Vertical lines
-			for (let x = -halfW; x <= halfW; x += planeSpacing) {
-				const a = project(x, -halfH, scale);
-				const b = project(x, halfH, scale);
-				ctx.beginPath();
-				ctx.moveTo(a.x, a.y);
-				ctx.lineTo(b.x, b.y);
-				ctx.stroke();
-			}
-		}
-
 		function drawGrid(time = 0) {
 			const t = theme();
 
@@ -208,7 +171,7 @@
 	});
 </script>
 
-<div class="bg-canvas" bind:this={container}>
+<div class="bg-canvas" aria-hidden="true" bind:this={container}>
 	<canvas bind:this={canvas}></canvas>
 </div>
 

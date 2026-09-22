@@ -27,3 +27,6 @@ project.inlang/cache/
 
 # Mprocs
 mprocs.log
+
+# Agent instructions (local only)
+AGENTS.md
