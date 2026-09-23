@@ -108,8 +108,8 @@
 		</div>
 
 		<!--Right Side-->
-		<div class="navbar-end">
-			<ul class="menu menu-horizontal relative z-10 hidden flex-nowrap px-1 xl:flex">
+		<div class="navbar-end flex flex-nowrap items-center">
+			<ul class="menu menu-horizontal relative z-10 hidden shrink-0 flex-nowrap px-1 xl:flex">
 				<li>
 					<a class="brand-link tracking-normal" href={resolve('/')}>
 						<span class="hvr-lines-square p-2" class:current-tab={isActive('/')}>Home</span>
@@ -143,7 +143,10 @@
 			</ul>
 
 			<!-- Medium screens (768–1280): top three links inline, rest in the drawer -->
-			<ul class="menu menu-horizontal relative z-10 hidden flex-nowrap px-1 md:flex xl:hidden">
+			<ul
+				class="menu menu-horizontal relative z-10 hidden flex-nowrap
+				px-1 md:flex xl:hidden"
+			>
 				<li>
 					<a class="brand-link tracking-normal" href={resolve('/')}>
 						<span class="hvr-lines-square p-2" class:current-tab={isActive('/')}>Home</span>
@@ -165,7 +168,7 @@
 			</ul>
 
 			<!-- Theme toggle lives in the navbar, never inside a menu. -->
-			<div class="ml-2 flex items-center">
+			<div class="ml-2 flex shrink-0 items-center">
 				{@render themeToggle()}
 			</div>
 
@@ -251,7 +254,7 @@
 	}
 	/* Current tab also gets a darker backdrop behind the text width. */
 	.hvr-lines-square.current-tab {
-		background-color: #f4f4f4;
+		background-color: transparent;
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.brand-link .hvr-lines-square {

@@ -14,7 +14,7 @@
 	// Static chart thumbnails + video, revealed with a pixelation effect behind the canvas grid.
 	// duration is per-slide milliseconds. Videos default to their full runtime.
 	const slides = [
-		{ src: '/videos/Climate_Stripes_Square.mp4', type: 'video' },
+		{ src: '/videos/Climate_Stripes_Hero.mp4', type: 'video' },
 		{ src: '/images/charts/gallery/thumbs/static__2.webp', type: 'image', duration: 5500 },
 		{ src: '/images/charts/gallery/thumbs/static__3.webp', type: 'image', duration: 4500 },
 		{ src: '/images/charts/gallery/thumbs/static__5.webp', type: 'image', duration: 5500 },
