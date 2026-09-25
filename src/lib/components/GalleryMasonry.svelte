@@ -286,7 +286,7 @@
 			type="button"
 			onclick={() => (activeFilter = filter.id)}
 			aria-pressed={activeFilter === filter.id}
-			class={`pressable cursor-pointer px-2 py-1 text-base text-base-content sm:text-lg `}
+			class="pressable cursor-pointer px-2 py-1 text-base text-base-content sm:text-lg"
 		>
 			<span class="hvr-lines-square" class:current-tab={activeFilter === filter.id}>
 				{filter.label}

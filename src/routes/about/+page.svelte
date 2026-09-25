@@ -26,7 +26,7 @@
 		</header>
 		<div class="space-y-2">
 			<div class="collapse-arrow collapse border border-base-content/10 bg-base-100">
-				<input type="checkbox" />
+				<input type="checkbox" aria-label="Who section" />
 
 				<div class="collapse-title text-3xl font-black sm:text-4xl">Who</div>
 
@@ -43,7 +43,7 @@
 			</div>
 
 			<div class="collapse-arrow collapse border border-base-content/10 bg-base-100">
-				<input type="checkbox" checked />
+				<input type="checkbox" checked aria-label="Why section" />
 
 				<div class="collapse-title text-3xl font-black sm:text-4xl">Why</div>
 
@@ -61,7 +61,7 @@
 			</div>
 
 			<div class="collapse-arrow collapse border border-base-content/10 bg-base-100">
-				<input type="checkbox" />
+				<input type="checkbox" aria-label="What section" />
 
 				<div class="collapse-title text-3xl font-black sm:text-4xl">What</div>
 
@@ -138,7 +138,10 @@
 </main>
 
 <style>
-	[data-theme='bc-dark'] iframe[data-tally-src] {
+	/* Fully global: data-theme lives on <html> and embed.js swaps data-tally-src → src
+	 * at runtime, so a scoped selector would be stripped as "unused" by Svelte. */
+	:global([data-theme='bc-dark'] iframe[data-tally-src]),
+	:global([data-theme='bc-dark'] iframe[src*='tally.so']) {
 		filter: invert(0.9) hue-rotate(180deg);
 		background: transparent;
 	}

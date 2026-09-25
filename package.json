@@ -48,7 +48,6 @@
 		"vitest-browser-svelte": "^2.1.0"
 	},
 	"dependencies": {
-		"@masonry-grid/svelte": "^1.1.1",
 		"photoswipe": "^5.4.4",
 		"photoswipe-video-plugin": "^1.0.2"
 	}

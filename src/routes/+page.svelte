@@ -1,4 +1,5 @@
 <script>
+	import { resolve } from '$app/paths';
 	import Hero from '$lib/components/Hero.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import { getStaticSeo } from '$lib/seo.js';
@@ -29,7 +30,7 @@
 				</p>
 
 				<div class="mt-4 flex justify-center">
-					<a href="/gallery" class="main-link text-2xl tracking-tight">
+					<a href={resolve('/gallery')} class="main-link text-2xl tracking-tight">
 						<span class="hvr-lines-square p-2">Look closer →</span>
 					</a>
 				</div>
