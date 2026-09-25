@@ -24,7 +24,9 @@
 					</h1>
 				</div>
 
-				<p class="mt-3 text-center text-lg text-base-content/70">Data · Visuals · Stories</p>
+				<p class="mt-3 text-center text-lg text-base-content/70">
+					Visualizations · Motion Graphics · Stories
+				</p>
 
 				<div class="mt-4 flex justify-center">
 					<a href="/gallery" class="main-link text-2xl tracking-tight">
