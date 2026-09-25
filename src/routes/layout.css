@@ -120,36 +120,6 @@
 		@apply z-50 border border-base-300 bg-base-100 p-5;
 	}
 
-	/*  Hover Lines Square - Small */
-	.hvr-lines-square-sm {
-		display: inline-block;
-		position: relative;
-		overflow: hidden;
-		padding: 2px 0;
-	}
-
-	.hvr-lines-square-sm::after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 51%;
-		right: 51%;
-		height: 3px;
-		background-image: repeating-linear-gradient(
-			to right,
-			var(--color-base-content) 0 3px,
-			transparent 3px 5px
-		);
-		transition:
-			left 0.3s ease-out,
-			right 0.3s ease-out;
-	}
-
-	.hvr-lines-square-sm:hover::after {
-		left: 0;
-		right: 0;
-	}
-
 	/*  Hover Lines Square - Default */
 	.hvr-lines-square {
 		display: inline-block;
@@ -181,8 +151,7 @@
 	}
 
 	/* Current tab keeps the underline persistently (navbar menus, filter buttons). */
-	.hvr-lines-square.current-tab::after,
-	.hvr-lines-square-sm.current-tab::after {
+	.hvr-lines-square.current-tab::after {
 		left: 0;
 		right: 0;
 	}
@@ -198,14 +167,6 @@
 }
 
 @layer utilities {
-	.theme-shadow {
-		@apply shadow-black/5 dark:shadow-black/40;
-	}
-	.header-font {
-		font-family: 'Space Grotesk', sans-serif;
-		font-weight: 700;
-		letter-spacing: 0.0825em;
-	}
 	.about-page-hack {
 		content-visibility: auto;
 		contain-intrinsic-size: auto 800px;
@@ -251,7 +212,7 @@
 		transform: none;
 	}
 
-	/* Pressable controls (gallery/blog filter buttons): drop down like
+	/* Pressable controls (gallery filter buttons): drop down like
 	 * buttons on hover/focus/active. Uses the independent `translate`
 	 * property so it composes with the badge `transform` animation above
 	 * instead of overriding it. */

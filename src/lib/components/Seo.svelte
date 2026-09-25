@@ -5,7 +5,6 @@
 		url,
 		image,
 		type = 'website',
-		publishedTime = undefined,
 		noindex = false,
 		jsonLd = undefined
 	} = $props();
@@ -32,10 +31,6 @@
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content={image} />
 	<meta name="twitter:url" content={url} />
-
-	{#if publishedTime}
-		<meta property="article:published_time" content={publishedTime} />
-	{/if}
 
 	{#if noindex}
 		<meta name="robots" content="noindex, follow" />

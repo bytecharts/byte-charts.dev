@@ -1,3 +1,3 @@
 # Byte Charts
 
-A blog on data visualization
+A gallery of data visualization, motion graphics, and interactive explainers.

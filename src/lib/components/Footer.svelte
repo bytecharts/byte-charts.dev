@@ -107,6 +107,22 @@
 					/></svg
 				>
 			</a>
+			<!--Email-->
+			<a href="mailto:contact@byte-charts.dev" aria-label="Email Byte Charts">
+				<svg
+					role="img"
+					class="fill-base-content"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<title>Email</title>
+					<path
+						d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm18.75 2.4-8.5 6.75a.4.4 0 0 1-.5 0L3.25 6.4A.6.6 0 0 0 2.3 7.2l8.9 6.86a1.4 1.4 0 0 0 1.6 0l8.9-6.86a.6.6 0 0 0-.95-.8z"
+					/>
+				</svg>
+			</a>
 		</div>
 		<div class="grid grid-flow-col gap-4 p-4">
 			<p class="copy-text text-md">

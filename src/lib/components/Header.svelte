@@ -123,20 +123,8 @@
 					</a>
 				</li>
 				<li>
-					<a class="brand-link tracking-tight" href={resolve('/blog')}>
-						<span class="hvr-lines-square p-2" class:current-tab={isActive('/blog')}>Blog</span>
-					</a>
-				</li>
-				<li>
 					<a class="brand-link tracking-tight" href={resolve('/about')}
 						><span class="hvr-lines-square p-2" class:current-tab={isActive('/about')}>About</span
-						></a
-					>
-				</li>
-				<li>
-					<a class="brand-link tracking-tight" href={resolve('/contact')}
-						><span class="hvr-lines-square p-2" class:current-tab={isActive('/contact')}
-							>Contact</span
 						></a
 					>
 				</li>
@@ -172,8 +160,8 @@
 				{@render themeToggle()}
 			</div>
 
-			<!--Mobile Menu-->
-			<div bind:this={dropdownEl} class="relative xl:hidden">
+			<!--Mobile Menu (below md; the md-xl row covers md+ alongside the inline nav)-->
+			<div bind:this={dropdownEl} class="relative md:hidden">
 				<button
 					type="button"
 					aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -206,23 +194,10 @@
 								></a
 							>
 						</li>
-						<li>
-							<a class="brand-link tracking-tight" href={resolve('/blog')} onclick={closeMenu}
-								><span class="hvr-lines-square p-2" class:current-tab={isActive('/blog')}>Blog</span
-								></a
-							>
-						</li>
 						<li class="md:hidden">
 							<a class="brand-link tracking-tight" href={resolve('/about')} onclick={closeMenu}
 								><span class="hvr-lines-square p-2" class:current-tab={isActive('/about')}
 									>About</span
-								></a
-							>
-						</li>
-						<li>
-							<a class="brand-link tracking-tight" href={resolve('/contact')} onclick={closeMenu}
-								><span class="hvr-lines-square p-2" class:current-tab={isActive('/contact')}
-									>Contact</span
 								></a
 							>
 						</li>

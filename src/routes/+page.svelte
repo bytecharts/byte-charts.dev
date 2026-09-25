@@ -17,8 +17,8 @@
 					<h1 class="text-center font-black tracking-tight">
 						<span class="blur-[2.75px]">Bringing</span>
 						<span
-							class="relative z-10 bg-yellow-300 px-2
-							tracking-tight">attention</span
+							class="relative z-10 bg-yellow-300 px-2 tracking-tight
+							dark:bg-yellow-500/80">attention</span
 						>
 						<span class="blur-[2.75px]">to numbers</span>
 					</h1>

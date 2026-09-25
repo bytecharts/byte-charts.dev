@@ -7,6 +7,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<meta name="text-scale" content="scale" />
+
+		<!-- Warm up Google Fonts origins before the CSS @import in layout.css fetches them. -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<script>
 			const theme = localStorage.getItem('theme');
 

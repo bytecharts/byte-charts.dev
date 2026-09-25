@@ -18,38 +18,28 @@ const absoluteUrl = (path) => {
 
 const pages = {
 	home: {
-		title: 'Byte Charts - Visual Stories',
+		title: 'Byte Charts | Data Visualization Studio',
 		description:
 			'Byte Charts turns complex data into visual stories, motion graphics, and interactive explainers.',
 		path: '/',
-		schemaType: 'WebSite'
+		schemaType: 'WebSite',
+		image: '/images/byte-charts.webp'
 	},
 	about: {
-		title: 'About Byte Charts',
+		title: 'About Us | Byte Charts',
 		description:
-			'Byte Charts is a data visualization studio creating visual stories from complex information.',
+			'Byte Charts is a data visualization studio creating clear, compelling visual stories from complex information.',
 		path: '/about',
-		schemaType: 'AboutPage'
+		schemaType: 'AboutPage',
+		image: '/images/byte-charts.webp'
 	},
 	gallery: {
-		title: 'Visual Stories - Byte Charts',
+		title: 'Gallery | Byte Charts',
 		description:
-			'A curated collection of data visualizations, animated explainers, and visual experiments.',
+			'Explore a curated collection of data visualizations, animated explainers, and visual experiments by Byte Charts.',
 		path: '/gallery',
-		schemaType: 'ImageGallery'
-	},
-	blog: {
-		title: 'Notes - Byte Charts',
-		description: 'Ideas, sketches, and notes on data visualization and visual storytelling.',
-		path: '/blog',
-		schemaType: 'CollectionPage'
-	},
-	contact: {
-		title: 'Contact Byte Charts',
-		description:
-			'Start a data visualization, motion graphics, or interactive storytelling project with Byte Charts.',
-		path: '/contact',
-		schemaType: 'ContactPage'
+		schemaType: 'ImageGallery',
+		image: '/images/byte-charts.webp'
 	}
 };
 
@@ -59,11 +49,19 @@ const organizationJsonLd = {
 	name: 'Byte Charts',
 	url: SITE_URL,
 	logo: absoluteUrl('/images/byte-charts.webp'),
+	email: 'contact@byte-charts.dev',
+	contactPoint: {
+		'@type': 'ContactPoint',
+		email: 'contact@byte-charts.dev',
+		contactType: 'customer support'
+	},
 	sameAs
 };
-
 export const getStaticSeo = (key) => {
 	const page = pages[key];
+	if (!page) {
+		throw new Error(`getStaticSeo: unknown page key "${key}"`);
+	}
 	const url = absoluteUrl(page.path);
 	const jsonLd = {
 		'@context': 'https://schema.org',
@@ -79,43 +77,5 @@ export const getStaticSeo = (key) => {
 		url,
 		image: absoluteUrl(page.image),
 		jsonLd: key === 'home' ? [organizationJsonLd, jsonLd] : [jsonLd]
-	};
-};
-
-const toIsoDate = (value) => {
-	if (!value) return undefined;
-	const parsed = new Date(value);
-	return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString();
-};
-
-export const getBlogPostSeo = (meta, slug) => {
-	const title = `${meta?.title ?? 'Post'} - Byte Charts`;
-	const description = meta?.excerpt ?? 'A note from Byte Charts.';
-	const url = absoluteUrl(`/blog/${slug}`);
-	const image = absoluteUrl(meta?.cover);
-	const publishedTime = toIsoDate(meta?.date);
-
-	return {
-		title,
-		description,
-		url,
-		image,
-		type: 'article',
-		publishedTime,
-		jsonLd: {
-			'@context': 'https://schema.org',
-			'@type': 'BlogPosting',
-			headline: meta?.title ?? 'Post',
-			datePublished: publishedTime,
-			description,
-			image,
-			url,
-			author: { '@type': 'Person', name: 'Sathish' },
-			publisher: {
-				'@type': 'Organization',
-				name: 'Byte Charts',
-				logo: { '@type': 'ImageObject', url: absoluteUrl('/images/byte-charts.webp') }
-			}
-		}
 	};
 };

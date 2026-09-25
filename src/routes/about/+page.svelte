@@ -1,8 +1,15 @@
 <script>
 	import Seo from '$lib/components/Seo.svelte';
 	import { getStaticSeo } from '$lib/seo.js';
+	import { onMount } from 'svelte';
 
 	const seo = getStaticSeo('about');
+	onMount(() => {
+		const script = document.createElement('script');
+		script.src = 'https://tally.so/widgets/embed.js';
+		script.onload = () => window.Tally?.loadEmbeds();
+		document.body.appendChild(script);
+	});
 </script>
 
 <Seo {...seo} />
@@ -14,7 +21,7 @@
 				class="text-4xl font-black tracking-wide
 				sm:text-5xl"
 			>
-				Perspective
+				Behind the Numbers
 			</h1>
 		</header>
 		<div class="space-y-2">
@@ -25,9 +32,12 @@
 
 				<div class="collapse-content">
 					<p class="prose leading-relaxed text-base-content/80 lg:prose-xl">
-						Byte Charts is a data visualization studio creating visual stories from complex
-						information, run by Sathish. I combine data visualization, motion graphics, 3D and
-						interactive design to communicate complex ideas clearly.
+						Byte Charts is
+						<a
+							href="https://rand-net.dev"
+							class="hvr-lines-square [display:inline] no-underline"
+							target="_blank">Sathish</a
+						>, one person turning numbers into visuals that pull them into focus.
 					</p>
 				</div>
 			</div>
@@ -39,9 +49,13 @@
 
 				<div class="collapse-content">
 					<p class="prose leading-relaxed text-base-content/80 lg:prose-xl">
-						Numbers are elusive and abstract. Turning something abstract into a picture makes
-						comprehension easier. It gives better insights into patterns, relationships and feedback
-						loops.
+						Numbers are everywhere. Seeing what they contain is another matter. Data visualization
+						makes patterns, comparisons, and stories visible.
+					</p>
+					<br />
+					<p class="prose leading-relaxed text-base-content/80 lg:prose-xl">
+						I’ve been fascinated by that gap since 2019, after a lecture by Shirley Wu. In 2026, I
+						decided to commit to closing it full-time.
 					</p>
 				</div>
 			</div>
@@ -53,41 +67,41 @@
 
 				<div class="collapse-content">
 					<p class="prose leading-relaxed text-base-content/80 lg:prose-xl">
-						Byte Charts turns data and complex information into visual stories through
-						visualization, motion and interactive design.
-					</p>
-				</div>
-			</div>
-
-			<div class="collapse-arrow collapse border border-base-content/10 bg-base-100">
-				<input type="checkbox" />
-
-				<div class="collapse-title text-3xl font-black sm:text-4xl">How</div>
-
-				<div class="collapse-content">
-					<p class="prose leading-relaxed text-base-content/80 lg:prose-xl">
-						Byte Charts is where I explore that intersection—and create visualizations for people
-						and organizations that have something complex to communicate.
+						Static graphics, interactive tools, motion graphics. I work at the intersection of
+						design, code, and motion. The same dataset might end up as more than one of these.
 					</p>
 				</div>
 			</div>
 		</div>
 
 		<div class="mt-8 border border-base-content/10 bg-base-100 p-4 sm:p-4">
-			<div class=" text-3xl font-black sm:text-4xl">Let's visualize it</div>
+			<div class="text-3xl font-black sm:text-4xl">Send me your numbers</div>
 
 			<p class="prose mt-4 leading-relaxed text-base-content/80 lg:prose-xl">
-				I can help turn a dataset, idea or story into an animated visualization, interactive
-				experience, 3D sequence, or something entirely different.
+				Let's figure out what they're trying to say.
 			</p>
+			<iframe
+				data-tally-src="https://tally.so/embed/9qeJ04?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&formEventsForwarding=1"
+				loading="lazy"
+				width="100%"
+				height="300"
+				frameBorder="0"
+				marginHeight="0"
+				marginWidth="0"
+				title="Send me your numbers"
+			></iframe>
 
-			<p class="prose mt-4 leading-relaxed text-base-content/80 lg:prose-xl">
-				Have a dataset, story or complex idea that needs to be visualized? Let's work together.
+			<p class="m-4 prose leading-relaxed text-base-content/60 lg:prose-xl">
+				Prefer email? Reach me at
+				<a
+					href="mailto:contact@byte-charts.dev"
+					class="hvr-lines-square [display:inline] no-underline">contact@byte-charts.dev</a
+				>.
 			</p>
 		</div>
 
 		<div class="mt-8 border border-base-content/10 bg-base-100 p-4 sm:p-4">
-			<div class=" text-3xl font-black sm:text-4xl">People whose work I keep coming back to.</div>
+			<div class=" text-3xl font-black sm:text-4xl">Works that hold my attention</div>
 
 			<div class="mt-4 divide-y divide-base-content/10">
 				<a
@@ -118,16 +132,14 @@
 					<span class="font-medium">Deepali Kank </span>
 					<span class="text-sm text-base-content/50">Data analyst and visual storyteller</span>
 				</a>
-				<a
-					href="https://shreyamaheshwari.framer.website/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="items-left flex flex-col justify-between py-4 text-base-content transition-opacity hover:opacity-60"
-				>
-					<span class="font-medium">Shreya Maheswari </span>
-					<span class="text-sm text-base-content/50">Brand & Type Designer</span>
-				</a>
 			</div>
 		</div>
 	</div>
 </main>
+
+<style>
+	[data-theme='bc-dark'] iframe[data-tally-src] {
+		filter: invert(0.9) hue-rotate(180deg);
+		background: transparent;
+	}
+</style>
