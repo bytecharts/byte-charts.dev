@@ -111,30 +111,30 @@
 		<div class="navbar-end flex flex-nowrap items-center">
 			<ul class="menu menu-horizontal relative z-10 hidden shrink-0 flex-nowrap px-1 xl:flex">
 				<li>
-					<a class="brand-link tracking-normal" href={resolve('/')}>
+					<a class="brand-link tracking-tight" href={resolve('/')}>
 						<span class="hvr-lines-square p-2" class:current-tab={isActive('/')}>Home</span>
 					</a>
 				</li>
 				<li>
-					<a class="brand-link tracking-normal" href={resolve('/gallery')}>
+					<a class="brand-link tracking-tight" href={resolve('/gallery')}>
 						<span class="hvr-lines-square p-2" class:current-tab={isActive('/gallery')}
 							>Gallery</span
 						>
 					</a>
 				</li>
 				<li>
-					<a class="brand-link tracking-normal" href={resolve('/blog')}>
+					<a class="brand-link tracking-tight" href={resolve('/blog')}>
 						<span class="hvr-lines-square p-2" class:current-tab={isActive('/blog')}>Blog</span>
 					</a>
 				</li>
 				<li>
-					<a class="brand-link tracking-normal" href={resolve('/about')}
+					<a class="brand-link tracking-tight" href={resolve('/about')}
 						><span class="hvr-lines-square p-2" class:current-tab={isActive('/about')}>About</span
 						></a
 					>
 				</li>
 				<li>
-					<a class="brand-link tracking-normal" href={resolve('/contact')}
+					<a class="brand-link tracking-tight" href={resolve('/contact')}
 						><span class="hvr-lines-square p-2" class:current-tab={isActive('/contact')}
 							>Contact</span
 						></a
@@ -148,19 +148,19 @@
 				px-1 md:flex xl:hidden"
 			>
 				<li>
-					<a class="brand-link tracking-normal" href={resolve('/')}>
+					<a class="brand-link tracking-tight" href={resolve('/')}>
 						<span class="hvr-lines-square p-2" class:current-tab={isActive('/')}>Home</span>
 					</a>
 				</li>
 				<li>
-					<a class="brand-link tracking-normal" href={resolve('/gallery')}>
+					<a class="brand-link tracking-tight" href={resolve('/gallery')}>
 						<span class="hvr-lines-square p-2" class:current-tab={isActive('/gallery')}
 							>Gallery</span
 						>
 					</a>
 				</li>
 				<li>
-					<a class="brand-link tracking-normal" href={resolve('/about')}
+					<a class="brand-link tracking-tight" href={resolve('/about')}
 						><span class="hvr-lines-square p-2" class:current-tab={isActive('/about')}>About</span
 						></a
 					>
@@ -195,32 +195,32 @@
 						class="menu absolute right-0 z-[1] mt-3 w-52 menu-sm rounded-box bg-white p-2 shadow"
 					>
 						<li class="md:hidden">
-							<a class="brand-link tracking-normal" href={resolve('/')} onclick={closeMenu}
+							<a class="brand-link tracking-tight" href={resolve('/')} onclick={closeMenu}
 								><span class="hvr-lines-square p-2" class:current-tab={isActive('/')}>Home</span></a
 							>
 						</li>
 						<li class="md:hidden">
-							<a class="brand-link tracking-normal" href={resolve('/gallery')} onclick={closeMenu}
+							<a class="brand-link tracking-tight" href={resolve('/gallery')} onclick={closeMenu}
 								><span class="hvr-lines-square p-2" class:current-tab={isActive('/gallery')}
 									>Gallery</span
 								></a
 							>
 						</li>
 						<li>
-							<a class="brand-link tracking-normal" href={resolve('/blog')} onclick={closeMenu}
+							<a class="brand-link tracking-tight" href={resolve('/blog')} onclick={closeMenu}
 								><span class="hvr-lines-square p-2" class:current-tab={isActive('/blog')}>Blog</span
 								></a
 							>
 						</li>
 						<li class="md:hidden">
-							<a class="brand-link tracking-normal" href={resolve('/about')} onclick={closeMenu}
+							<a class="brand-link tracking-tight" href={resolve('/about')} onclick={closeMenu}
 								><span class="hvr-lines-square p-2" class:current-tab={isActive('/about')}
 									>About</span
 								></a
 							>
 						</li>
 						<li>
-							<a class="brand-link tracking-normal" href={resolve('/contact')} onclick={closeMenu}
+							<a class="brand-link tracking-tight" href={resolve('/contact')} onclick={closeMenu}
 								><span class="hvr-lines-square p-2" class:current-tab={isActive('/contact')}
 									>Contact</span
 								></a
@@ -238,7 +238,6 @@
 		font-family: 'Space Grotesk', sans;
 		font-size: 1.575rem;
 		font-weight: 700;
-		letter-spacing: 0.05em;
 		background-color: transparent;
 		background-image: none;
 	}
